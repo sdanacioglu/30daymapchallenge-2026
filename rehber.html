@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rehber · BakırçayCBS #30DayMapChallenge 2026</title>
+  <meta name="description" content="Katılımcı rehberi: teslim kuralı, haritada bulunması gerekenler, şablon ve kurallar.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="rehber">
+  <header id="site-header"></header>
+
+  <main>
+    <section class="hero" style="padding-bottom:12px">
+      <div class="wrap">
+        <div class="eyebrow">Katılımcı rehberi</div>
+        <h1>Haritanı nasıl hazırlayacaksın?</h1>
+        <p class="lead">Görevin, seçtiğin günün temasıyla <strong>bir özgün harita</strong> hazırlamak.
+          Bu bir yarışma değil; amaç öğrenmek, denemek ve üretmek.</p>
+      </div>
+    </section>
+
+    <!-- 1. Teslim -->
+    <section style="padding-top:0">
+      <div class="wrap">
+        <h2>1. Ne zaman teslim edeceksin?</h2>
+        <div class="grid-2">
+          <div class="card">
+            <div class="muted">Herkes</div>
+            <div class="rule-big">22 Ekim toplantısı</div>
+            <strong>Fikir kartıyla hazırlıklı gel</strong>
+            <p class="muted" style="margin:6px 0 0">22 Ekim Perşembe 20:00'deki çevrim içi toplantıya, sana atanan günün konusuyla ilgili
+              aşağıdaki formatta bir fikir kartı hazırlayarak gel. Toplantıda herkes fikrini kısaca paylaşacak.</p>
+          </div>
+          <div class="card">
+            <div class="muted">Herkes · tüm günler</div>
+            <div class="rule-big">Harita gününden 3 gün önce</div>
+            <strong>Final teslim</strong>
+            <p class="muted" style="margin:6px 0 0">Örnek: 24 Kasım'ın haritası en geç <strong>21 Kasım</strong>'da,
+              5 Kasım'ın haritası en geç <strong>2 Kasım</strong>'da teslim edilir.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h3 style="margin-top:0">🗒️ Fikir kartı formatı</h3>
+          <ol style="margin:0;padding-left:20px;display:grid;gap:6px">
+            <li><strong>Gün ve tema:</strong> örn. Gün 5 · Senses: Sight</li>
+            <li><strong>Çalışma başlığı:</strong> haritanın taslak başlığı</li>
+            <li><strong>Ne haritalayacaksın?</strong> 1–2 cümle; hangi soruya cevap arıyorsun, nerede?</li>
+            <li><strong>Veri:</strong> kullanmayı düşündüğün kaynak(lar) ve yılı (<a href="kaynaklar.html">Kaynaklar</a> sayfasına göz at)</li>
+            <li><strong>Araç:</strong> QGIS, ArcGIS Pro, R, Python, Canva…</li>
+            <li><strong>Yardım ihtiyacı:</strong> takılabileceğini düşündüğün nokta (veri, yöntem, tasarım)</li>
+          </ol>
+          <p class="muted" style="margin:10px 0 0;font-size:.9rem">Kısa tut: bir telefon ekranına sığacak kadar yeterli. Toplantıda veri sorunlarını erkenden fark edip birlikte çözeceğiz.</p>
+        </div>
+
+        <div class="note">📚 <strong>Lisans öğrencilerimize hatırlatma:</strong> Ara sınavlar <strong>31 Ekim – 8 Kasım</strong> tarihleri arasında.
+          Teslim tarihin bu döneme denk geliyorsa haritanı sınavlarından önce bitirecek şekilde planla.</div>
+
+        <div class="card" style="margin-top:16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+          <label for="gun-sec"><strong>Günün kaç?</strong></label>
+          <select id="gun-sec" style="font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text)"></select>
+          <span id="gun-sonuc" aria-live="polite" style="font-weight:700;color:var(--brand)"></span>
+        </div>
+
+        <p class="muted" style="margin-top:12px"><strong>Taslak isteğe bağlı:</strong> Geri bildirim istersen taslağını finalden önce istediğin zaman paylaş;
+          mentörlerimiz yardımcı olur. Bir sorun mu var? <strong>Erken haber ver.</strong> Sorun geç kalmak değil, haber vermemektir;
+          erken haber verirsen günü üstlenecek bir arkadaş bulabiliriz.</p>
+      </div>
+    </section>
+
+    <!-- 2. Anatomi -->
+    <section>
+      <div class="wrap">
+        <h2>2. Haritanda neler olmalı?</h2>
+        <p class="muted">Tüm haritalarımız aynı çerçeveyi kullanıyor. Böylece koleksiyon bir bütün gibi görünüyor.
+          Aşağıdaki şablon, gerçek boyutun (1080 × 1350 px) küçültülmüş hâlidir.</p>
+        <div class="anatomy">
+          <svg viewBox="0 0 1080 1350" role="img" aria-labelledby="anat-t">
+            <title id="anat-t">Harita düzeni: üstte etkinlik şeridi, başlık, boş harita alanı, altta künye ve logo</title>
+            <rect width="1080" height="1350" fill="#ffffff"/>
+            <!-- 1 şerit -->
+            <rect width="1080" height="96" fill="#1f7f86"/>
+            <text x="48" y="61" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800">#30DayMapChallenge 2026</text>
+            <text x="1010" y="61" fill="#fff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600" text-anchor="end">Gün [N] · [Tema adı]</text>
+            <!-- 2 başlık -->
+            <text x="60" y="190" fill="#1d2626" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">[Harita başlığın]</text>
+            <text x="60" y="250" fill="#5b6b6b" font-family="Inter, Arial, sans-serif" font-size="28">[Kısa alt başlık: yöntem, alan ya da dönem]</text>
+            <!-- 3 harita alanı -->
+            <rect x="60" y="290" width="960" height="840" rx="12" fill="#f4f7f6" stroke="#9db0ae" stroke-width="3" stroke-dasharray="16 12"/>
+            <text x="540" y="725" fill="#9db0ae" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="800" text-anchor="middle" letter-spacing="6">HARİTANIZ</text>
+            <!-- 5 künye -->
+            <line x1="60" y1="1160" x2="1020" y2="1160" stroke="#dbe3e2" stroke-width="2"/>
+            <text x="60" y="1210" fill="#1d2626" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Hazırlayan: [Ad Soyad] · [@kullaniciadi]</text>
+            <text x="60" y="1254" fill="#5b6b6b" font-family="Inter, Arial, sans-serif" font-size="26">Veri: [Kaynak, yıl]</text>
+            <text x="60" y="1296" fill="#5b6b6b" font-family="Inter, Arial, sans-serif" font-size="26">Araç: [QGIS / ArcGIS Pro / R / Python…]</text>
+            <!-- 6 logo -->
+            <image href="assets/logo.png" x="890" y="1178" width="130" height="130"/>
+            <!-- numaralar -->
+            <g font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800" fill="#fff" text-anchor="middle">
+              <circle cx="1046" cy="48" r="26" fill="#e0832f" stroke="#fff" stroke-width="4"/><text x="1046" y="59">1</text>
+              <circle cx="30" cy="200" r="26" fill="#e0832f" stroke="#fff" stroke-width="4"/><text x="30" y="211">2</text>
+              <circle cx="1046" cy="600" r="26" fill="#e0832f" stroke="#fff" stroke-width="4"/><text x="1046" y="611">3</text>
+              <circle cx="86" cy="1104" r="26" fill="#e0832f" stroke="#fff" stroke-width="4"/><text x="86" y="1115">4</text>
+              <circle cx="30" cy="1250" r="26" fill="#e0832f" stroke="#fff" stroke-width="4"/><text x="30" y="1261">5</text>
+              <circle cx="880" cy="1178" r="26" fill="#e0832f" stroke="#fff" stroke-width="4"/><text x="880" y="1189">6</text>
+            </g>
+          </svg>
+          <div>
+            <ol>
+              <li><strong>Etkinlik şeridi (en üst)</strong>
+                <small>Haritanın hangi etkinliğin, hangi gününe ve temasına ait olduğunu söyler. Şablonda hazır;
+                  sen yalnızca gün numarasını ve temanın İngilizce adını yazarsın. Örn. <em>Gün 5 · Senses: Sight</em>.</small></li>
+              <li><strong>Harita başlığı ve kısa alt başlık</strong>
+                <small>Kendi başlığın. Haritanın ne anlattığını bir cümlede söyle; alt başlıkta yöntemi ya da kapsamı belirt.</small></li>
+              <li><strong>Harita alanı</strong>
+                <small>Haritanın kendisi. Alanın büyük kısmını o kaplamalı.</small></li>
+              <li><strong>Lejant, ölçek ve kuzey oku (harita alanının içinde)</strong>
+                <small>Haritayı okumak için gerekenler. Sanatsal bir çalışmada gerekmiyorsa sade tutabilirsin.</small></li>
+              <li><strong>Künye (alt satırlar)</strong>
+                <small><strong>Hazırlayan:</strong> ad soyad (isteğe bağlı kullanıcı adı) ·
+                  <strong>Veri:</strong> kaynak ve yıl (OSM için “© OpenStreetMap katkıcıları”) ·
+                  <strong>Araç:</strong> QGIS, ArcGIS Pro, R, Python… Yapay zekâ kullandıysan burada belirt.</small></li>
+              <li><strong>BakırçayCBS logosu (sağ alt)</strong>
+                <small>Şablonda hazır, yerini değiştirme.</small></li>
+            </ol>
+            <div class="btn-row">
+              <a class="btn" href="assets/sablon_1080x1350.svg" download>Şablonu indir (SVG)</a>
+            </div>
+            <p class="muted" style="font-size:.9rem;margin-top:10px">Şablon Canva, Figma, Inkscape ve Illustrator'da açılır.
+              Şablondaki harita alanı <strong>960 × 840 px</strong>. Haritanı tam bu boyutta dışa aktarırsan alana birebir oturur.</p>
+            <div class="tips">
+              <details>
+                <summary>🟩 QGIS ile</summary>
+                <ol>
+                  <li><em>Proje → Yeni Yazdırma Düzeni</em> aç. Sayfaya yalnızca harita öğesini (ve gerekiyorsa lejant, ölçek, kuzey okunu) ekle.</li>
+                  <li><em>Sayfa Özellikleri</em>'nde boyutu <em>Özel</em>, birimi <em>px</em> seç: <strong>960 × 840</strong>.</li>
+                  <li><em>Düzen → Görüntü Olarak Dışa Aktar (PNG)</em>. Açılan pencerede genişlik ve yükseklik 960 × 840 px görünmeli.
+                    HD sürüm için çözünürlüğü üç katına çıkar (2880 × 2520 px).</li>
+                  <li>PNG'yi Canva, Figma ya da Inkscape'te şablonun harita alanına yerleştir ve dışa aktar.</li>
+                </ol>
+              </details>
+              <details>
+                <summary>🟦 ArcGIS Pro ile</summary>
+                <ol>
+                  <li><em>Insert → New Layout → Custom page size</em>: genişlik <strong>9,6 inç</strong>, yükseklik <strong>8,4 inç</strong>.</li>
+                  <li>Harita çerçevesini sayfayı kaplayacak şekilde yerleştir. Lejant, ölçek ve kuzey okunu <em>Insert</em> sekmesinden ekle.</li>
+                  <li><em>Share → Export Layout</em>: biçim <em>PNG</em>, çözünürlük <strong>100 dpi</strong> → 960 × 840 px.
+                    HD sürüm için <strong>300 dpi</strong> → 2880 × 2520 px.</li>
+                  <li>PNG'yi şablonun harita alanına yerleştir. İstersen tüm şablonu Pro'da kurabilirsin:
+                    sayfayı <strong>10,8 × 13,5 inç</strong> yapıp 100 dpi dışa aktarırsan 1080 × 1350 px elde edersin. Şerit, başlık,
+                    künye ve logoyu <em>Insert → Text / Picture</em> ile ekleyebilirsin.</li>
+                </ol>
+              </details>
+              <details>
+                <summary>🎨 Canva ile</summary>
+                <ol>
+                  <li><em>Tasarım oluştur → Özel boyut</em>: <strong>1080 × 1350 px</strong>.</li>
+                  <li><em>Yüklemeler</em> ile <code>sablon_1080x1350.svg</code> dosyasını yükle ve sayfaya yerleştir.</li>
+                  <li>Köşeli parantezli metinleri değiştir, harita PNG'ni harita alanına yerleştir, <em>Paylaş → İndir → PNG</em>.</li>
+                </ol>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Dosyalar -->
+    <section>
+      <div class="wrap grid-2">
+        <div class="card">
+          <h2>3. Teslim edeceğin dosyalar</h2>
+          <ul>
+            <li><strong>Harita (PNG):</strong> 1080 × 1350 px. Instagram için 4:5 oranında.<br>
+              <code>Gun05_SensesSight_AdSoyad.png</code></li>
+            <li><strong>Yüksek çözünürlüklü harita (PNG):</strong> uzun kenarı en az 3000 px.<br>
+              <code>Gun05_SensesSight_AdSoyad_HD.png</code></li>
+            <li><strong>Açıklama metni:</strong> 2–3 cümle Türkçe, 1 cümle İngilizce. Haritan neyi anlatıyor, neden ilginç?</li>
+            <li><strong>7. gün (10 dakikalık harita):</strong> ayrıca ekran kaydı.</li>
+          </ul>
+          <p class="muted">Teslim klasörünün linki atamalarla birlikte paylaşılacak.</p>
+        </div>
+        <div class="card">
+          <h2>4. Kurallar</h2>
+          <ol>
+            <li><strong>Özgünlük:</strong> Harita senin emeğin olmalı.</li>
+            <li><strong>Atıf:</strong> Her veri ve görselin kaynağını yaz.</li>
+            <li><strong>Yapay zekâ:</strong> Haritayı baştan sona yapay zekâya ürettirmek yalnızca <strong>10. günde</strong> serbest.
+              Diğer günlerde yapay zekâyı kod yardımı veya fikir için kullanabilirsin, ama künyede belirtmelisin.</li>
+            <li><strong>7. gün:</strong> Gerçekten 10 dakika olmalı ve ekran kaydı alınmalı.</li>
+            <li><strong>Kişisel veri:</strong> Anket ya da saha verisinde kişileri tanınır kılma.</li>
+            <li><strong>Saygı:</strong> Etkinliğin davranış kuralları geçerlidir.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Paylaşım -->
+    <section>
+      <div class="wrap">
+        <h2>5. Haritan nerede paylaşılacak?</h2>
+        <div class="grid-2">
+          <div class="card"><h3>📱 Sosyal medya</h3><p class="muted">Kendi gününde BakırçayCBS hesaplarından seni etiketleyerek paylaşılır.
+            Kendi hesabından da paylaşman önerilir.</p></div>
+          <div class="card"><h3>🗂️ Koleksiyon</h3><p class="muted">Bu sitedeki <a href="koleksiyon.html">koleksiyona</a> eklenir ve resmi
+            #30DayMapChallenge galerisinde yer alır. Haritanın hakları sende kalır.</p></div>
+        </div>
+      </div>
+    </section>
+    <section style="padding-top:0"><div class="wrap"><div data-contact></div></div></section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="assets/data.js"></script>
+  <script src="assets/site.js"></script>
+  <script>
+    (function () {
+      const sel = document.getElementById("gun-sec"), out = document.getElementById("gun-sonuc");
+      sel.innerHTML = '<option value="">Seç…</option>' + TEMALAR.map(t =>
+        `<option value="${t.n}">${t.n} Kasım · ${t.en}</option>`).join("");
+      sel.addEventListener("change", () => {
+        const t = TEMALAR.find(x => x.n === +sel.value);
+        out.textContent = t ? (t.level === "group" ? "Ortak gün: etkinlikte birlikte hazırlanır."
+          : `Son teslim: ${deadlineOf(t)}` + (deadlineInExam(t) ? "  ❗ ara sınav dönemine denk geliyor, sınavlardan önce bitirmeyi planla" : "")) : "";
+      });
+    })();
+  </script>
+</body>
+</html>

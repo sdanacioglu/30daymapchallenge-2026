@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kaynaklar · BakırçayCBS #30DayMapChallenge 2026</title>
+  <meta name="description" content="Harita yaparken işine yarayacak veri kaynakları (Türkiye ve dünya), araçlar ve eğitimler.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="kaynaklar">
+  <header id="site-header"></header>
+
+  <main>
+    <section class="hero" style="padding-bottom:12px">
+      <div class="wrap">
+        <div class="eyebrow">Yardımcı kaynaklar</div>
+        <h1>Veri, araç ve eğitimler</h1>
+        <p class="lead">Etkinlikte her veri ve her araç serbest. Bu sayfa başlamana ve fikir bulmana yardımcı olmak için hazırlandı.
+          Etkinliğin resmi <a href="https://30daymapchallenge.com/resources/" target="_blank" rel="noopener">kaynaklar sayfasını</a> temel alıyor;
+          Türkiye kaynakları ve ek küresel kaynaklar topluluğumuz tarafından eklenmiştir.</p>
+        <div class="card" style="border:2px solid var(--brand);margin:18px 0">
+          <h3 style="margin-top:0">🗂️ Bakırçay CBS Açık Veri Kaynakları</h3>
+          <p class="muted" style="margin-bottom:12px">Bu sayfada seçilmiş kaynakları görüyorsun. Türkiye ve dünyadan <strong>700'den fazla</strong> açık veri kaynağını
+            arayıp filtreleyebileceğin, her ay otomatik güncellenen arşivimiz:</p>
+          <div class="btn-row" style="margin-top:0">
+            <a class="btn" href="https://sdanacioglu.github.io/bakircay-cbs-acik-veri-kaynaklari/" target="_blank" rel="noopener">Arşivde ara →</a>
+            <a class="btn ghost" href="https://sdanacioglu.github.io/bakircay-cbs-acik-veri-kaynaklari/?kapsam=%40tr" target="_blank" rel="noopener">🇹🇷 Yalnızca Türkiye kaynakları</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EĞİTİMLER -->
+    <section>
+      <div class="wrap">
+        <h2>🎓 Eğitimler ve başlangıç kaynakları</h2>
+        <div class="card" style="border:2px solid var(--brand)">
+          <h3 style="margin-top:0">📚 Bakırçay CBS Eğitim Kaynakları</h3>
+          <p class="muted">QGIS, ArcGIS, R, Python, kartografya ve uzaktan algılama için videolar, kurslar, kitaplar ve rehberler artık
+            sürekli güncellenen ayrı bir listede.</p>
+          <div class="btn-row" style="margin-top:0">
+            <a class="btn" href="https://sdanacioglu.github.io/bakircay-cbs-egitim-kaynaklari/" target="_blank" rel="noopener">Eğitim kaynaklarına git →</a>
+            <a class="btn ghost" href="https://sdanacioglu.github.io/bakircay-cbs-egitim-kaynaklari/?dil=T%C3%BCrk%C3%A7e" target="_blank" rel="noopener">Yalnızca Türkçe</a>
+          </div>
+          <h3 style="margin:22px 0 8px">⭐ Topluluk üyelerimizin kanalları</h3>
+          <p class="muted" style="margin-top:0">Üyelerimizin ürettiği içerikleri takip ederek destek olalım. Sen de kanal açtıysan
+            <a href="mailto:bakircaycbs@gmail.com">bize yaz</a>, burada yer alsın.</p>
+          <ul class="res-list" id="uye-kanallari">
+            <li><a href="https://www.youtube.com/@ecemgis" target="_blank" rel="noopener">Ecem GIS (YouTube)</a><span>Türkçe CBS ve ArcGIS anlatımları.</span></li>
+            <li><a href="https://www.youtube.com/@georehber" target="_blank" rel="noopener">Geo Rehber (YouTube)</a><span>Türkçe CBS ve harita yapımı videoları.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <script>
+      /* Üye kanallarını eğitim arşivinden canlı çek (aynı alan adı); olmazsa yukarıdaki sabit liste kalır */
+      fetch("https://sdanacioglu.github.io/bakircay-cbs-egitim-kaynaklari/data/kaynaklar.json", { cache: "no-cache" })
+        .then(r => r.json()).then(d => {
+          const esc = s => String(s || "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+          const l = d.kaynaklar.filter(k => k.uye_kanali === "Evet" && k.durum !== "erişilemiyor");
+          if (l.length) document.getElementById("uye-kanallari").innerHTML = l.map(k =>
+            `<li><a href="${esc(k.url)}" target="_blank" rel="noopener">${esc(k.ad)} (${esc(k.tur)})</a><span>${esc(k.aciklama)}</span></li>`).join("");
+        }).catch(() => {});
+    </script>
+
+    <!-- TÜRKİYE -->
+    <section style="padding-top:0">
+      <div class="wrap">
+        <h2>🇹🇷 Türkiye'den veri kaynakları</h2>
+        <div class="note">Hangi veriyi kullanırsan kullan, haritanın künyesine <strong>kaynağını ve yılını</strong> yaz ve verinin kullanım koşullarına göz at.
+          <strong>ArcGIS Living Atlas ve ArcGIS Online</strong> katmanları da kullanılabilir; künyede katmanın adını ve sağlayıcısını belirtmen yeterli.</div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Ulusal portallar ve istatistik</h3>
+            <ul class="res-list">
+              <li><a href="https://ulasav.csb.gov.tr/dataset/" target="_blank" rel="noopener">ULASAV: Ulusal Akıllı Şehir Açık Veri Platformu</a><span>Çevre, Şehircilik ve İklim Değişikliği Bakanlığı'nın şehir verileri (vektör).</span></li>
+              <li><a href="https://tucbs.gov.tr/" target="_blank" rel="noopener">TUCBS: Türkiye Ulusal Coğrafi Bilgi Sistemi</a><span>Ulusal coğrafi veri altyapısı ve tematik veri setleri.</span></li>
+              <li><a href="https://data.tuik.gov.tr/" target="_blank" rel="noopener">TÜİK Veri Portalı</a><span>Nüfus, göç, ekonomi ve tarım istatistikleri.</span></li>
+              <li><a href="https://biruni.tuik.gov.tr/ilgosterge/" target="_blank" rel="noopener">TÜİK İl Göstergeleri</a><span>İl düzeyinde sosyal ve ekonomik göstergeler (tablo).</span></li>
+              <li><a href="https://btk.gov.tr/" target="_blank" rel="noopener">BTK</a><span>Bilgi Teknolojileri ve İletişim Kurumu; internet ve mobil iletişim istatistikleri.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Afet, yer bilimleri, harita</h3>
+            <ul class="res-list">
+              <li><a href="https://deprem.afad.gov.tr/event-catalog" target="_blank" rel="noopener">AFAD Deprem Kataloğu</a><span>Depremlerin konum, büyüklük ve derinlik bilgileri; indirilebilir.</span></li>
+              <li><a href="http://www.koeri.boun.edu.tr/sismo/2/tr/" target="_blank" rel="noopener">Kandilli Rasathanesi (KOERI)</a><span>Son depremler listesi ve deprem kataloğu.</span></li>
+              <li><a href="https://yerbilimleri.mta.gov.tr/" target="_blank" rel="noopener">MTA Yerbilimleri Harita Görüntüleyici</a><span>Türkiye diri fay hatları, jeoloji, maden ve jeotermal haritaları.</span></li>
+              <li><a href="https://atlas.harita.gov.tr/" target="_blank" rel="noopener">HGM Atlas</a><span>Harita, ortofoto ve tarihi harita görüntüleyicisi.</span></li>
+              <li><a href="https://www.harita.gov.tr/" target="_blank" rel="noopener">Harita Genel Müdürlüğü</a><span>Ulusal haritacılık kurumu; ürün ve hizmetler.</span></li>
+              <li><a href="https://parselsorgu.tkgm.gov.tr/" target="_blank" rel="noopener">TKGM Parsel Sorgu</a><span>Tapu ve Kadastro parsel sınırları ve bilgileri.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Çevre, iklim, enerji, doğa</h3>
+            <ul class="res-list">
+              <li><a href="https://sim.csb.gov.tr/STN/STN_Report/StationDataDownloadNew" target="_blank" rel="noopener">Hava Kalitesi İstasyon Verisi (SİM)</a><span>Bakanlığın hava kalitesi ölçüm istasyonlarından veri indirme.</span></li>
+              <li><a href="https://www.mgm.gov.tr/" target="_blank" rel="noopener">Meteoroloji Genel Müdürlüğü (MGM)</a><span>İl bazında iklim istatistikleri; ayrıntılı veri talebi için MEVBİS.</span></li>
+              <li><a href="https://repa.enerji.gov.tr/" target="_blank" rel="noopener">REPA: Rüzgâr Enerjisi Potansiyel Atlası</a><span>Türkiye rüzgâr hızı ve kapasite haritaları.</span></li>
+              <li><a href="https://gepa.enerji.gov.tr/" target="_blank" rel="noopener">GEPA: Güneş Enerjisi Potansiyel Atlası</a><span>Türkiye güneşlenme ve ışınım haritaları.</span></li>
+              <li><a href="https://corine.tarimorman.gov.tr/" target="_blank" rel="noopener">CORINE Projesi (Tarım ve Orman Bakanlığı)</a><span>Türkiye arazi örtüsü ve arazi kullanımı.</span></li>
+              <li><a href="https://www.ogm.gov.tr/" target="_blank" rel="noopener">Orman Genel Müdürlüğü</a><span>Orman varlığı ve yangın istatistikleri.</span></li>
+              <li><a href="https://www.dsi.gov.tr/" target="_blank" rel="noopener">Devlet Su İşleri (DSİ)</a><span>Baraj, havza ve su kaynakları bilgileri.</span></li>
+              <li><a href="http://194.27.225.161/yasin/tubives/index.php?sayfa=istatistik" target="_blank" rel="noopener">TÜBİVES: Türkiye Bitkileri Veri Servisi</a><span>Bitki türlerinin il bazında dağılım istatistikleri.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Şehir ve bölge verisi</h3>
+            <ul class="res-list">
+              <li><a href="https://acikveri.bizizmir.com/" target="_blank" rel="noopener">İzmir Büyükşehir Belediyesi Açık Veri Portalı</a><span>Ulaşım (ESHOT, İZBAN, vapur), baraj doluluk, park, eczane ve daha fazlası.</span></li>
+              <li><a href="https://dataizmir.izka.org.tr/mekansal" target="_blank" rel="noopener">Data İzmir (İZKA): mekânsal gösterim</a><span>İzmir Kalkınma Ajansı'nın ilçe ve mahalle düzeyindeki göstergeleri.</span></li>
+              <li><a href="https://data.ibb.gov.tr/" target="_blank" rel="noopener">İBB Açık Veri Portalı</a><span>İstanbul'un ulaşım, çevre ve altyapı verileri.
+                Örneğin <a href="https://data.ibb.gov.tr/dataset/mahallem-istanbul-projesi-ses-sosyo-ekonomik-statu-skorlari" target="_blank" rel="noopener">mahalle düzeyinde sosyo-ekonomik statü skorları</a>.</span></li>
+              <li><a href="https://acikveri.ordu.bel.tr/" target="_blank" rel="noopener">Ordu Büyükşehir Belediyesi Açık Veri Platformu</a><span>Başka bir il için belediye açık verisi örneği.</span></li>
+              <li><a href="https://ci.turkpatent.gov.tr/" target="_blank" rel="noopener">Türk Patent Coğrafi İşaretler Portalı</a><span>Tescilli yöresel ürünler; “Tat” günü için birebir.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DÜNYA -->
+    <section>
+      <div class="wrap">
+        <h2>🌍 Dünyadan veri kaynakları</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Platformlar ve kataloglar</h3>
+            <ul class="res-list">
+              <li><a href="https://livingatlas.arcgis.com/" target="_blank" rel="noopener">ArcGIS Living Atlas</a><span>Esri'nin seçilmiş, kullanıma hazır harita ve katman koleksiyonu.</span></li>
+              <li><a href="https://www.arcgis.com/home/index.html" target="_blank" rel="noopener">ArcGIS Online</a> · <a href="https://hub.arcgis.com/" target="_blank" rel="noopener">ArcGIS Hub</a><span>Kurumların paylaştığı açık katmanlar ve veri setleri; servis olarak doğrudan kullanılabilir.</span></li>
+              <li><a href="https://dataspace.copernicus.eu/explore-data/data-collections" target="_blank" rel="noopener">Copernicus Data Space: veri koleksiyonları</a> · <a href="https://browser.dataspace.copernicus.eu/" target="_blank" rel="noopener">Copernicus Browser</a><span>Sentinel ve diğer uydu verilerinin tamamı; tarayıcıda gez ve indir.</span></li>
+              <li><a href="https://www.eea.europa.eu/en/datahub" target="_blank" rel="noopener">Avrupa Çevre Ajansı (EEA) Datahub</a><span>Avrupa çevre, iklim ve arazi verileri.</span></li>
+              <li><a href="https://data.worldbank.org/indicator/SP.POP.TOTL" target="_blank" rel="noopener">Dünya Bankası Açık Veri</a><span>Ülke düzeyinde nüfus ve kalkınma göstergeleri.</span></li>
+              <li><a href="https://datasetsearch.research.google.com/" target="_blank" rel="noopener">Google Dataset Search</a><span>Web'deki veri setlerinde arama motoru.</span></li>
+              <li><a href="https://freegisdata.rtwilson.com/" target="_blank" rel="noopener">Free GIS Data</a><span>500'den fazla ücretsiz coğrafi veri sitesinin kategorili listesi.</span></li>
+              <li><a href="https://data.humdata.org/" target="_blank" rel="noopener">Humanitarian Data Exchange (HDX)</a><span>Dünyanın dört bir yanından veri setleri (ör. Kontur nüfus).</span></li>
+              <li><a href="https://docs.google.com/spreadsheets/d/1utQRlrX3lJniBjWE3rNjLZeTRsbjH-zdjxNmXhhvO9Q/edit#gid=47" target="_blank" rel="noopener">CBS veri depoları tablosu (Karen Payne)</a><span>CBS veri depolarını listeleyen kapsamlı tablo.</span></li>
+              <li><a href="https://www.data-is-plural.com/" target="_blank" rel="noopener">Data is Plural</a><span>Sıra dışı veri setleri bülteni ve arşivi.</span></li>
+              <li><a href="https://github.com/public-apis/public-apis" target="_blank" rel="noopener">public-apis</a><span>Ücretsiz API'lerin topluluk listesi.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Temel harita ve vektör veri</h3>
+            <ul class="res-list">
+              <li><a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a><span>Herkesin düzenleyebildiği ücretsiz dünya haritası.</span></li>
+              <li><a href="https://www.geofabrik.de/data/download.html" target="_blank" rel="noopener">GeoFabrik</a> · <a href="https://overpass-turbo.eu/" target="_blank" rel="noopener">Overpass Turbo</a><span>OSM verisini bölge bazında indir ya da sorguyla çek.</span></li>
+              <li><a href="https://overturemaps.org/download/" target="_blank" rel="noopener">Overture Maps</a><span>OSM ve diğer açık verileri birleştiren aylık küresel veri setleri.</span></li>
+              <li><a href="https://www.naturalearthdata.com/downloads/" target="_blank" rel="noopener">Natural Earth</a><span>Kamu malı vektör ve raster veriler (1:10m, 1:50m, 1:110m).</span></li>
+              <li><a href="https://gadm.org/download_country.html" target="_blank" rel="noopener">GADM</a><span>Ülke, il ve ilçe idari sınırları.</span></li>
+              <li><a href="https://opentopomap.org/" target="_blank" rel="noopener">OpenTopoMap</a> · <a href="https://www.opencyclemap.org/" target="_blank" rel="noopener">OpenCycleMap</a> · <a href="http://www.openseamap.org/" target="_blank" rel="noopener">OpenSeaMap</a><span>OSM tabanlı topoğrafya, bisiklet ve denizcilik altlıkları.</span></li>
+              <li><a href="https://opentripmap.com/" target="_blank" rel="noopener">OpenTripMap</a><span>Turistik ilgi noktaları (POI).</span></li>
+              <li><a href="https://tasks.hotosm.org/" target="_blank" rel="noopener">HOT Tasking Manager</a><span>OSM düzenleme görevleri; 21 Kasım mapathonu için.</span></li>
+              <li><a href="https://h3geo.org/" target="_blank" rel="noopener">Uber H3</a><span>Altıgen ızgara sistemi; 20 Kasım (Hexagons) için.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Arazi örtüsü, yerleşim, yükseklik</h3>
+            <ul class="res-list">
+              <li><a href="https://livingatlas.arcgis.com/landcoverexplorer/" target="_blank" rel="noopener">Sentinel-2 Land Cover Explorer (Esri)</a><span>10 m çözünürlüklü yıllık küresel arazi örtüsü.</span></li>
+              <li><a href="https://esa-worldcover.org/en" target="_blank" rel="noopener">ESA WorldCover</a><span>10 m küresel arazi örtüsü (2020, 2021).</span></li>
+              <li><a href="https://land.copernicus.eu/en/products/corine-land-cover" target="_blank" rel="noopener">CORINE Land Cover (Copernicus)</a><span>Avrupa arazi örtüsü ve değişimi (100 m).</span></li>
+              <li><a href="https://human-settlement.emergency.copernicus.eu/" target="_blank" rel="noopener">GHSL</a><span>Küresel yerleşim, yapılaşma ve kentleşme derecesi.</span></li>
+              <li><a href="https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM" target="_blank" rel="noopener">Copernicus DEM (GLO-30)</a><span>30 m küresel sayısal yükseklik modeli.</span></li>
+              <li><a href="https://earthexplorer.usgs.gov/" target="_blank" rel="noopener">USGS EarthExplorer</a><span>Landsat görüntüleri ve SRTM yükseklik verisi (ücretsiz üyelik).</span></li>
+              <li><a href="https://opentopography.org/" target="_blank" rel="noopener">OpenTopography</a><span>Lidar nokta bulutları ve sayısal yükseklik modelleri.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>İklim, atmosfer, enerji, gece ışıkları</h3>
+            <ul class="res-list">
+              <li><a href="https://www.worldclim.org/" target="_blank" rel="noopener">WorldClim</a><span>Küresel sıcaklık ve yağış iklim yüzeyleri (GeoTIFF).</span></li>
+              <li><a href="https://www.chc.ucsb.edu/data" target="_blank" rel="noopener">Climate Hazards Center (CHIRPS)</a><span>Uydu tabanlı küresel yağış ve sıcaklık verileri.</span></li>
+              <li><a href="https://data.ceda.ac.uk/badc" target="_blank" rel="noopener">CEDA Arşivi</a><span>Atmosfer ve iklim verileri (NetCDF).</span></li>
+              <li><a href="https://www.wri.org/data" target="_blank" rel="noopener">World Resources Institute (WRI)</a><span>İklim, orman, su ve enerji veri setleri.</span></li>
+              <li><a href="https://globalwindatlas.info/en/area/Turkey/Izmir" target="_blank" rel="noopener">Global Wind Atlas: İzmir</a> · <a href="https://globalsolaratlas.info/" target="_blank" rel="noopener">Global Solar Atlas</a><span>Rüzgâr ve güneş potansiyeli.</span></li>
+              <li><a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank" rel="noopener">NASA FIRMS</a><span>Aktif yangın noktaları; neredeyse gerçek zamanlı.</span></li>
+              <li><a href="https://blackmarble.gsfc.nasa.gov/" target="_blank" rel="noopener">NASA Black Marble</a> · <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/YGIVCD" target="_blank" rel="noopener">Harvard Dataverse gece ışıkları</a><span>Gece ışıkları (NPP / VIIRS).</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Deniz ve su</h3>
+            <ul class="res-list">
+              <li><a href="https://marine.copernicus.eu/" target="_blank" rel="noopener">Copernicus Marine</a><span>Deniz sıcaklığı, akıntılar, tuzluluk ve deniz biyolojisi.</span></li>
+              <li><a href="https://www.gebco.net/" target="_blank" rel="noopener">GEBCO</a><span>Küresel deniz tabanı derinlik verisi.</span></li>
+              <li><a href="https://www.ncei.noaa.gov/products/world-ocean-database" target="_blank" rel="noopener">World Ocean Database (NOAA)</a><span>Küresel okyanus ölçümleri.</span></li>
+              <li><a href="https://www.hydrosheds.org/products/hydrorivers" target="_blank" rel="noopener">HydroRIVERS</a><span>Küresel akarsu ağı.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Toprak, biyoçeşitlilik, afet</h3>
+            <ul class="res-list">
+              <li><a href="https://www.fao.org/soils-portal/data-hub/soil-maps-and-databases/harmonized-world-soil-database-v20/en/" target="_blank" rel="noopener">FAO Harmonized World Soil Database v2.0</a><span>Küresel toprak haritası (1 km).</span></li>
+              <li><a href="https://isric.org/explore/soilgrids" target="_blank" rel="noopener">ISRIC SoilGrids</a> · <a href="https://data.isric.org/" target="_blank" rel="noopener">ISRIC veri kataloğu</a><span>Küresel ızgara toprak özellikleri.</span></li>
+              <li><a href="https://www.gbif.org/" target="_blank" rel="noopener">GBIF</a><span>Bitki ve hayvan türlerinin küresel gözlem kayıtları (nokta).</span></li>
+              <li><a href="https://www.protectedplanet.net/en" target="_blank" rel="noopener">Protected Planet (WDPA)</a><span>Korunan alanlar veritabanı.</span></li>
+              <li><a href="https://public.emdat.be/" target="_blank" rel="noopener">EM-DAT</a><span>Küresel afet veritabanı (ücretsiz üyelikle).</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted" style="font-size:.88rem;margin-top:12px">Resmi kaynaklar sayfasında ayrıca Birleşik Krallık (OS OpenData) ve Yeni Zelanda (LINZ) kaynakları da var.</p>
+      </div>
+    </section>
+
+    <!-- ARAÇLAR -->
+    <section>
+      <div class="wrap">
+        <h2>🛠️ Araçlar</h2>
+        <p class="muted">Programlama ya da tasarım bilgisi gerekmiyor, ama ikisi de işe yarar. Etkinlik her yazılımı kabul ediyor.</p>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Masaüstü ve web</h3>
+            <ul class="res-list">
+              <li><a href="https://www.qgis.org/" target="_blank" rel="noopener">QGIS</a><span>Ücretsiz, açık kaynak masaüstü CBS.</span></li>
+              <li><a href="https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview" target="_blank" rel="noopener">ArcGIS Pro</a><span>Laboratuvarımızdaki lisanslı masaüstü CBS.</span></li>
+              <li><a href="https://kepler.gl/" target="_blank" rel="noopener">kepler.gl</a><span>Büyük veriyle etkileşimli harita ve analiz.</span></li>
+              <li><a href="https://mapshaper.org" target="_blank" rel="noopener">Mapshaper</a><span>Tarayıcıda format dönüştürme, sadeleştirme, kırpma, projeksiyon.</span></li>
+              <li><a href="https://observablehq.com" target="_blank" rel="noopener">Observable</a> · <a href="https://d3js.org" target="_blank" rel="noopener">d3</a><span>Not defterinde etkileşimli görselleştirme ve harita.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>3B ve görsel</h3>
+            <ul class="res-list">
+              <li><a href="https://ephtracy.github.io/index.html?page=aerialod" target="_blank" rel="noopener">Aerialod</a><span>Yükseklik verisinden etkileyici 3B görseller.</span></li>
+              <li><a href="https://www.blender.org/" target="_blank" rel="noopener">Blender</a><span>Ücretsiz 3B paketi; BlenderGIS eklentisiyle.</span></li>
+              <li><a href="https://www.rayshader.com/" target="_blank" rel="noopener">rayshader (R)</a><span>R ile 2B ve 3B rölyef haritaları.</span></li>
+              <li><a href="https://vega.github.io/vega-lite/" target="_blank" rel="noopener">Vega-Lite</a> · <a href="https://vega.github.io/vega/" target="_blank" rel="noopener">Vega</a><span>Bildirimsel görselleştirme; <a href="https://vega.github.io/vega-lite/examples/#maps-geographic-displays" target="_blank" rel="noopener">harita örnekleri</a>.</span></li>
+              <li><a href="https://github.com/gicentre/litvis" target="_blank" rel="noopener">Litvis</a><span>Tasarım kararlarını belgeleyen görselleştirme defteri.</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>R ve Python</h3>
+            <ul class="res-list">
+              <li><a href="https://www.r-project.org/" target="_blank" rel="noopener">R</a><span>
+                <a href="https://cran.r-project.org/web/packages/sf/index.html" target="_blank" rel="noopener">sf</a> ·
+                <a href="https://ggplot2.tidyverse.org/" target="_blank" rel="noopener">ggplot2</a> ·
+                <a href="https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html" target="_blank" rel="noopener">tmap</a> ·
+                <a href="https://www.rayshader.com/" target="_blank" rel="noopener">rayshader</a></span></li>
+              <li><a href="https://python.org/" target="_blank" rel="noopener">Python</a><span>
+                <a href="https://geopandas.org/" target="_blank" rel="noopener">geopandas</a> ·
+                <a href="https://xarray-spatial.org" target="_blank" rel="noopener">xarray-spatial</a> ·
+                <a href="https://matplotlib.org/" target="_blank" rel="noopener">matplotlib</a> ·
+                <a href="https://residentmario.github.io/geoplot/" target="_blank" rel="noopener">geoplot</a> ·
+                <a href="https://hvplot.holoviz.org/" target="_blank" rel="noopener">hvplot</a> ·
+                <a href="https://plotly.com/python/" target="_blank" rel="noopener">plotly</a> ·
+                <a href="https://altair-viz.github.io" target="_blank" rel="noopener">altair</a></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section>
+      <div class="wrap">
+        <h2>🔗 Etkinlik bağlantıları</h2>
+        <div class="card">
+          <ul class="res-list">
+            <li><a href="https://30daymapchallenge.com/" target="_blank" rel="noopener">30daymapchallenge.com</a><span>Resmi site: 2026 temaları ve kurallar.</span></li>
+            <li><a href="https://30daymapchallenge.com/galleries/" target="_blank" rel="noopener">Galeriler</a><span>Dünyadan koleksiyonlar; Kasım'da bizimki de burada.</span></li>
+            <li><a href="https://30daymapchallenge.com/resources/" target="_blank" rel="noopener">Resmi kaynaklar sayfası</a><span>Bu sayfanın referans aldığı kaynak sayfa.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="assets/data.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>
