@@ -28,6 +28,7 @@
   const nav = [
     ["index.html", "home", "Etkinlik"],
     ["temalar.html", "temalar", "Temalar"],
+    ["ekip.html", "ekip", "Ekip"],
     ["rehber.html", "rehber", "Rehber"],
     ["kaynaklar.html", "kaynaklar", "Kaynaklar"],
     ["koleksiyon.html", "koleksiyon", "Koleksiyon"],

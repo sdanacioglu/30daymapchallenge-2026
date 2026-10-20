@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ekip · BakırçayCBS #30DayMapChallenge 2026</title>
+  <meta name="description" content="BakırçayCBS #30DayMapChallenge 2026 ekibi: hangi gün, hangi tema, kim hazırlıyor.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="ekip">
+  <header id="site-header"></header>
+
+  <main>
+    <section class="hero" style="padding-bottom:12px">
+      <div class="wrap">
+        <div class="eyebrow">Ekip ve program</div>
+        <h1>Her gün bir harita, her haritanın bir sahibi</h1>
+        <p class="lead">Hangi gün hangi temayı kimin hazırladığını burada görebilirsin.</p>
+        <div class="note">Gününle ilgili değişiklik talebin varsa WhatsApp grubundan bildir.</div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="wrap">
+        <div class="ekip-bar">
+          <label class="ara">
+            <span class="sr-only">İsim ara</span>
+            <input type="search" id="ekip-ara" placeholder="İsim ara…" autocomplete="off">
+          </label>
+        </div>
+        <div class="legend">
+          <span class="lvl-easy">Kolay</span><span class="lvl-mid">Orta</span>
+          <span class="lvl-hard">İleri</span><span class="lvl-group">Ortak gün</span>
+        </div>
+        <div id="ekip-takvim" class="calendar ekip-cal"></div>
+        <p class="muted" id="ara-sonuc" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="gun-detay" aria-labelledby="gd-baslik">
+    <div class="gd-kutu" id="gd-icerik"></div>
+  </dialog>
+
+  <footer id="site-footer"></footer>
+  <script src="assets/data.js"></script>
+  <script src="assets/ornekler.js"></script>
+  <script src="assets/ekip.js"></script>
+  <script src="assets/_yerel_notlar.js" onerror="this.remove()"></script>
+  <script src="assets/site.js"></script>
+  <script src="assets/ekip-sayfa.js"></script>
+</body>
+</html>
