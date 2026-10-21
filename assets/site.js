@@ -30,6 +30,7 @@
     ["temalar.html", "temalar", "Temalar"],
     ["ekip.html", "ekip", "Ekip"],
     ["rehber.html", "rehber", "Rehber"],
+    ["kamp.html", "kamp", "Kamp"],
     ["kaynaklar.html", "kaynaklar", "Kaynaklar"],
     ["koleksiyon.html", "koleksiyon", "Koleksiyon"],
     ["katil.html", "katil", "Katıl", "cta"]

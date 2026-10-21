@@ -336,3 +336,35 @@ th { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-sp
 .tercihler { display: flex; gap: 4px; }
 .tercihler a { font-size: .75rem; font-weight: 700; min-width: 26px; text-align: center; padding: 1px 6px; border-radius: 999px; background: var(--brand-soft); color: var(--brand-ink); text-decoration: none; }
 .tercihler a.dolu { background: transparent; color: var(--muted); text-decoration: line-through; border: 1px solid var(--line); }
+
+/* Kamp sayfası */
+.kamp-icindekiler { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.kamp-icindekiler a { font-size: .85rem; font-weight: 600; text-decoration: none; padding: 6px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--brand-ink); }
+.kamp-icindekiler a:hover { border-color: var(--brand); }
+section[id] { scroll-margin-top: 80px; }
+.adimlar { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.adimlar li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 14px 92px; position: relative; }
+.adimlar .zaman { position: absolute; left: 16px; top: 14px; font-weight: 800; color: var(--brand); font-variant-numeric: tabular-nums; }
+.adimlar p { margin: 4px 0 8px; color: var(--muted); }
+.yz { display: inline-block; font-size: .78rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; border: 1.5px solid var(--yz); color: var(--yz); }
+.y-yesil { --yz: var(--easy); } .y-sari { --yz: var(--mid); } .y-kirmizi { --yz: var(--hard); }
+.isik .card { border-top: 4px solid var(--yz); }
+.isik ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: .93rem; }
+.promptlar { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 14px; }
+.prompt-ust { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
+.prompt pre, .sablon { white-space: pre-wrap; overflow-wrap: anywhere; font: .88rem/1.55 ui-monospace, "Cascadia Mono", Consolas, monospace; background: var(--surface-2); padding: 12px 14px; border-radius: 10px; margin: 0 0 10px; }
+.kopyala { padding: 6px 14px; font-size: .85rem; cursor: pointer; font-family: inherit; }
+.moduller { display: grid; gap: 14px; }
+.modul { scroll-margin-top: 80px; }
+.modul-ust { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.modul-ust h3 { margin: 0; }
+.modul-no { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand-ink); font-weight: 800; flex: none; }
+.modul .res-list { margin: 10px 0; }
+.alistirma { background: var(--surface-2); border-radius: 10px; padding: 10px 14px; font-size: .92rem; margin-top: 10px; }
+.kontrol-listesi { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.kontrol-listesi label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+.kontrol-listesi input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--brand); flex: none; }
+@media (max-width: 640px) { .adimlar li { padding-left: 16px; } .adimlar .zaman { position: static; display: block; } }
+.kgrup { border-top: 1px solid var(--line); padding: 10px 0 2px; }
+.kgrup summary { cursor: pointer; font-weight: 700; color: var(--brand-ink); }
+.kgrup .res-list { margin: 10px 0 6px; }

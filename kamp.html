@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kamp · BakırçayCBS #30DayMapChallenge 2026</title>
+  <meta name="description" content="Harita kampı: fikirden teslime 7 adım, yapay zekâyı sorumlu kullanma ilkeleri, ArcGIS Pro'da görsel etki teknikleri ve kendi hızında izleyebileceğin modüller.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="kamp">
+  <header id="site-header"></header>
+
+  <main>
+    <section class="hero" style="padding-bottom:12px">
+      <div class="wrap">
+        <div class="eyebrow">Harita kampı</div>
+        <h1>30 gün, daha iyi bir harita</h1>
+        <p class="lead">Kendi hızında ilerle. Her modülde kısa bir açıklama, seçilmiş video ya da yazılar ve 10 dakikalık bir alıştırma var.
+          Temel aracımız <strong>ArcGIS Pro</strong>; gerektiğinde başka araçlardan da yararlanabilirsin.</p>
+        <nav class="kamp-icindekiler" aria-label="Kamp içindekiler">
+          <a href="#yol">7 adımda harita</a><a href="#yapay-zeka">Yapay zekâ ilkeleri</a><a href="#promptlar">Soru örnekleri</a>
+          <a href="#moduller">Modüller</a><a href="#gorsel-etki">Görsel etki teknikleri</a><a href="#yapim-notu">Yapım notu</a><a href="#kontrol">Kontrol listesi</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 1. Yol -->
+    <section id="yol">
+      <div class="wrap">
+        <h2>1. Fikirden teslime 7 adım</h2>
+        <p class="muted">G = harita günün. Final teslimi değişmez: <strong>G−3</strong>. Ara adımlar seni oraya rahat taşımak için.
+          İlk hafta (1–8 Kasım) günleri bu adımları toplantıdan sonraki birkaç güne sıkıştırır.</p>
+        <ol class="adimlar">
+          <li><span class="zaman">G−14</span><strong>Soru</strong>
+            <p>Haritanın cevaplayacağı <em>tek</em> soruyu yaz. "Su" değil; "İzmir'in hangi mahalleleri yaz aylarında en uzun su kesintisini yaşıyor?"</p>
+            <span class="yz y-yesil">Yapay zekâ: klişe avı için serbest</span></li>
+          <li><span class="zaman">G−12</span><strong>İlham ve fark</strong>
+            <p><a href="temalar.html">Temalar</a> sayfasındaki örnek haritalardan 3'ünü incele. "Benim haritamın farkı ne olacak?" sorusunu iki cümleyle yanıtla.</p>
+            <span class="yz y-yesil">Yapay zekâ: örneklerin yöntemini açıklatmak için serbest</span></li>
+          <li><span class="zaman">G−10</span><strong>Kâğıt eskiz</strong>
+            <p><strong>Önce kendin:</strong> 10 dakikada, yapay zekâsız, iki kaba yerleşim çiz. <strong>Sonra tartış:</strong> eskizini yapay zekâya
+              anlat ya da fotoğrafını göster; eleştirisini al. <strong>Son olarak:</strong> öğrendiklerinle üçüncü eskizi yine elle çiz.</p>
+            <span class="yz y-yesil">Yapay zekâ: eskizlerden sonra fikir tartışması için</span></li>
+          <li><span class="zaman">G−9</span><strong>Veri</strong>
+            <p>Veriyi bul, kaynağını ve yılını not et. <a href="kaynaklar.html">Kaynaklar</a> sayfası ve açık veri arşivi başlangıç noktan.</p>
+            <span class="yz y-yesil">Yapay zekâ: kaynak önerisi serbest; her kaynağı açıp doğrula</span></li>
+          <li><span class="zaman">G−7</span><strong>ArcGIS Pro taslağı</strong>
+            <p>Eskizini haritaya dönüştür. Takıldığın yerde modüllere ve görsel etki tekniklerine bak.</p>
+            <span class="yz y-sari">Yapay zekâ: hata ayıklama serbest; üretilen kod ya da model yapım notuna yazılır</span></li>
+          <li><span class="zaman">G−6</span><strong>Geri bildirim</strong>
+            <p>Taslağını mentörüne ya da bir arkadaşına göster. "İşe yarayan / geliştirilebilir / soru" kalıbıyla görüş iste.</p>
+            <span class="yz y-yesil">Yapay zekâ: ikinci bir eleştirmen olarak serbest; son karar senin</span></li>
+          <li><span class="zaman">G−3</span><strong>Final ve yapım notu</strong>
+            <p>PNG'ni ve 5 satırlık <a href="#yapim-notu">yapım notunu</a> teslim et. <a href="#kontrol">Kontrol listesine</a> son bir kez bak.</p>
+            <span class="yz y-yesil">Yapay zekâ: yazım ve İngilizce özet için serbest</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 2. Yapay zekâ -->
+    <section id="yapay-zeka">
+      <div class="wrap">
+        <h2>2. Yapay zekâyı sorumlu kullanmak</h2>
+        <p class="muted"><strong>Temel ilke:</strong> Fikir, veri seçimi ve tasarım kararları senin. Yapay zekâ bunları sorgulamana,
+          hızlanmana ve hata ayıklamana yardım eder.</p>
+        <div class="grid-3 isik">
+          <div class="card y-yesil"><h3>🟢 Serbest</h3><ul>
+            <li>Soru sormak, fikir tartışmak, klişeleri listeletmek</li>
+            <li>Veri kaynağı önerisi almak (doğrulayarak)</li>
+            <li>ArcGIS Pro hata mesajlarını çözmek</li>
+            <li>Taslağını eleştirtmek, renk körlüğü uygunluğunu sormak</li>
+            <li>Metnin yazımını düzeltmek, İngilizce özet</li></ul></div>
+          <div class="card y-sari"><h3>🟡 Yapım notunda belirterek</h3><ul>
+            <li>Yapay zekânın yazdığı kodla yapılan analiz</li>
+            <li>ArcGIS Pro'nun hazır derin öğrenme (GeoAI) modelleriyle sınıflandırma</li>
+            <li>Yapay zekâyla üretilmiş ikon ya da doku</li>
+            <li>Yapay zekâ taslağından yeniden yazılmış metin</li></ul></div>
+          <div class="card y-kirmizi"><h3>🔴 Yok</h3><ul>
+            <li>Yapay zekânın ürettiği görseli harita olarak sunmak</li>
+            <li>Doğrulanmamış ya da uydurma veri</li>
+            <li>Başkasının haritasını yapay zekâyla taklit etmek</li>
+            <li>Kişisel ya da lisanslı veriyi açık yapay zekâ araçlarına yüklemek</li></ul></div>
+        </div>
+        <div class="note"><strong>10. gün (Prompting only) istisnadır:</strong> o günün konusu zaten yapay zekâ. Yine de kullandığın prompt'ları yapım notuna ekle.
+          Yapay zekâ kullanımın paylaşımda yazılmaz; yalnızca yapım notunda, iç kayıt olarak tutulur.</div>
+      </div>
+    </section>
+
+    <!-- 3. Promptlar -->
+    <section id="promptlar">
+      <div class="wrap">
+        <h2>3. Yapay zekâya iyi soru sormak</h2>
+        <p class="muted">İyi bir soru dört şey içerir: <strong>rol</strong> (kim gibi düşünsün), <strong>bağlam</strong> (tema, yer, soru),
+          <strong>kısıt</strong> (biçim, uzunluk, "uydurma") ve <strong>beklenen çıktı</strong>. Köşeli parantezleri kendi bilgilerinle değiştir.</p>
+        <div class="promptlar" id="prompt-listesi"></div>
+      </div>
+    </section>
+
+    <!-- 4. Modüller -->
+    <section id="moduller">
+      <div class="wrap">
+        <h2>4. Modüller</h2>
+        <p class="muted">Sırayla ya da ihtiyacına göre ilerle. Her modül 30–60 dakikalık.</p>
+        <div class="moduller" id="modul-listesi"></div>
+      </div>
+    </section>
+
+    <!-- 5. Yapım notu -->
+    <section id="yapim-notu">
+      <div class="wrap grid-2">
+        <div class="card">
+          <h2>5. Yapım notu</h2>
+          <p class="muted">Finalinle birlikte teslim edilir. Paylaşılmaz; senin öğrenme kaydın ve paylaşım metninin hammaddesidir.</p>
+          <pre class="sablon" id="yapim-sablon">Soru: Haritam hangi soruyu yanıtlıyor?
+Veri: Kaynak, veri seti, yıl
+Yöntem: Hangi araçlar ve adımlar?
+Tasarım kararı: Neden bu renk, bu düzen, bu yazı tipi?
+Yapay zekâ: Kullanılmadı / … için kullanıldı</pre>
+          <button type="button" class="btn ghost kopyala" data-hedef="yapim-sablon">Kopyala</button>
+        </div>
+        <div class="card" id="kontrol">
+          <h2>6. Teslimden önce kontrol</h2>
+          <ul class="kontrol-listesi">
+            <li><label><input type="checkbox"> BakırçayCBS logosu bir köşede, okunur</label></li>
+            <li><label><input type="checkbox"> #30DayMapChallenge 2026 · gün · tema yazılı</label></li>
+            <li><label><input type="checkbox"> Başlık, hazırlayan ve veri kaynağı (yıl ile) var</label></li>
+            <li><label><input type="checkbox"> 1080 × 1350 px ve HD sürüm hazır</label></li>
+            <li><label><input type="checkbox"> Renkler renk körlüğü için kontrol edildi</label></li>
+            <li><label><input type="checkbox"> Yazım ve noktalama kontrol edildi</label></li>
+            <li><label><input type="checkbox"> Açıklama metni ve yapım notu hazır</label></li>
+          </ul>
+          <p class="muted" style="font-size:.9rem;margin:8px 0 0">İşaretler yalnızca bu tarayıcıda, senin için tutulur.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="assets/data.js"></script>
+  <script src="assets/site.js"></script>
+  <script src="assets/kamp.js"></script>
+</body>
+</html>
