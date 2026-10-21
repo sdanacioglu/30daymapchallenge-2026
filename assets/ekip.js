@@ -24,7 +24,7 @@ window.EKIP = {
     18: [{"ad": "İrem Beytüt"}],
     19: [{"ad": "Nisan Demirkahyalılar"}],
     20: [{"ad": "Mustafa Baran Arslan"}],
-    22: [{"ad": "Suna Şahin"}],
+    22: [{"ad": "Efe Coşkun Dönmez"}],
     23: [{"ad": "Başak Barin"}],
     24: [{"ad": "Eflin Özbilgin"}],
     25: [{"ad": "Yağmur Tuana Eltemur"}],
