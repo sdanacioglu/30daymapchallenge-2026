@@ -33,7 +33,7 @@
     }
     if (s >= T.mentorToplanti.ilk && s <= T.mentorToplanti.son)
       T.mentorler.forEach(m => {
-        if (g === m.gun) olaylar.push({ t: s, tur: "mentor", saat: m.saat || "saat belirlenecek", baslik: m.ad.split(" ")[0] + " ekibi",
+        if (g === m.gun) olaylar.push({ t: s, tur: "mentor", saat: m.saat || "", baslik: m.ad.split(" ")[0] + " ekibi",
           alt: "Mentör: " + m.ad, kimler: [m.ad].concat(m.ekip) });
       });
   }
@@ -115,21 +115,22 @@
     Object.values(gunluk).forEach(l => l.sort((a, b) => (a.saat || "99").localeCompare(b.saat || "99")));
 
     let html = "";
-    for (let w = bas, h = 0; w <= son; w = ekle(w, 7), h++) {
-      const pz = ekle(w, 6);
-      html += `<div class="tk-hafta"><div class="tk-baslik"><strong>${h === 0 ? "Hazırlık haftası" : h <= 4 ? h + ". hafta" : "Kapanış"}</strong>
-        <span>${w.getDate()} ${AY[w.getMonth()]} – ${pz.getDate()} ${AY[pz.getMonth()]}</span></div><div class="tk-gunler">`;
-      for (let i = 0; i < 7; i++) {
-        const d = ekle(w, i), s = iso(d), l = gunluk[s] || [];
-        html += `<div class="tk-gun${l.length ? "" : " bos"}${s === bugun ? " bugun" : ""}${i > 4 ? " hs" : ""}">
-          <div class="tk-tarih">${GUNK[i]} <b>${d.getDate()}</b> ${AY[d.getMonth()]}</div>
-          ${l.map(o => `<div class="tk-olay ${TUR[o.tur].cls}${o.durum ? " " + o.durum : ""}" title="${esc(o.alt)}">
-            <span class="tk-saat">${esc(o.saat)}</span><span class="tk-ad">${esc(o.baslik)}</span><small>${esc(o.alt)}</small></div>`).join("")}
-        </div>`;
-      }
-      html += `</div></div>`;
+    /* Ana sayfadaki challenge takvimiyle aynı ızgara: pazartesiden başlar, Kasım günlerinde tema ve seviye rengi */
+    const LVL = { easy: "lvl-easy", mid: "lvl-mid", hard: "lvl-hard", group: "lvl-group" };
+    html = GUNK.map(g => `<div class="dow">${g}</div>`).join("");
+    for (let d = bas; d <= son; d = ekle(d, 1)) {
+      const s = iso(d), l = gunluk[s] || [];
+      const tm = d.getMonth() === 10 ? TEMALAR.find(x => x.n === d.getDate()) : null;
+      html += `<div class="day tk-gun ${tm ? LVL[tm.level] : "tk-disi"}${s === bugun ? " bugun" : ""}${l.length ? "" : " bos"}">
+        <span class="d">${d.getDate()} ${AY[d.getMonth()]} · ${GUNK[hg(d)]}</span>
+        ${tm ? `<span class="t">${esc(tm.en)}</span>` : ""}
+        ${l.map(o => `<div class="tk-olay ${TUR[o.tur].cls}${o.durum ? " " + o.durum : ""}" title="${esc(o.baslik + " · " + o.alt)}">
+          ${o.saat ? `<span class="tk-saat">${esc(o.saat)}</span>` : ""}<span class="tk-ad">${esc(o.baslik)}</span>${o.tur === "akran" || o.tur === "genel" && o.alt !== "Tüm ekip" ? `<small>${esc(o.alt)}</small>` : ""}</div>`).join("")}
+      </div>`;
     }
     document.getElementById("takvim").innerHTML = html;
+    const eksik = T.mentorler.filter(m => !m.saat).map(m => m.ad.split(" ")[0]);
+    document.getElementById("takvim-not").textContent = eksik.length ? `Mentör toplantı saatleri belirlenince eklenecek (${eksik.join(", ")}).` : "";
     takip();
   }
 
