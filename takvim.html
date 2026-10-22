@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toplantı takvimi · BakırçayCBS #30DayMapChallenge 2026</title>
+  <meta name="description" content="BakırçayCBS #30DayMapChallenge 2026 haftalık toplantı takvimi: genel toplantılar, mentör toplantıları, akran toplantıları ve final teslimleri.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="ekip">
+  <header id="site-header"></header>
+
+  <main>
+    <section class="hero" style="padding-bottom:12px">
+      <div class="wrap">
+        <div class="eyebrow"><a href="ekip.html" style="text-decoration:none">Ekip</a> › Toplantı takvimi</div>
+        <h1>Haftalık toplantılar</h1>
+        <p class="lead">Her hafta üç toplantıya katılırsın: genel toplantı, mentör toplantın ve akran grubunun toplantısı.
+          İsmini seç; yalnızca senin toplantıların ve teslim tarihlerin görünsün.</p>
+        <div class="note"><strong>Katılım zorunlu.</strong> Paylaşımını tamamlamış olsan da tüm toplantılara katılırsın.
+          Katılamayacaksan en geç toplantıdan 2 saat önce mentörüne ya da grubuna yaz.</div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="wrap">
+        <div class="takvim-bar">
+          <label class="kisi-sec"><span>Ben:</span>
+            <select id="kisi"><option value="">Herkes</option></select></label>
+          <div class="filters" id="tur-filtre" role="group" aria-label="Toplantı türleri"></div>
+        </div>
+        <div id="takvim" class="tk"></div>
+      </div>
+    </section>
+
+    <section id="akran">
+      <div class="wrap">
+        <h2>Akran toplantıları</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="margin-top:0">Toplantını nasıl eklersin?</h3>
+            <ol class="steps-kisa">
+              <li>Grubunla gün ve saati belirleyin.</li>
+              <li>Moderatör formu <strong>"Planlandı"</strong> seçerek doldurur; toplantı takvimde görünür.</li>
+              <li>Toplantıdan sonra moderatör formu <strong>"Yapıldı"</strong> seçerek tekrar doldurur ve katılanları işaretler.</li>
+            </ol>
+            <div id="form-dugme"></div>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Gruplar</h3>
+            <div id="akran-gruplar" class="akran-gruplar"></div>
+          </div>
+        </div>
+        <h3 style="margin-top:24px">Haftalık takip</h3>
+        <div class="card table-wrap" id="akran-takip"></div>
+        <p class="muted" id="akran-durum" style="font-size:.9rem"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="assets/data.js"></script>
+  <script src="assets/ekip.js"></script>
+  <script src="assets/toplanti.js"></script>
+  <script src="assets/site.js"></script>
+  <script src="assets/takvim.js"></script>
+</body>
+</html>
