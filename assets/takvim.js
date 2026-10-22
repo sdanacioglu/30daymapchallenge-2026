@@ -45,7 +45,8 @@
   });
 
   /* --- Kişi listesi --- */
-  const kisiler = [...new Set(T.mentorler.flatMap(m => [m.ad, ...m.ekip]).concat(Object.values(T.akran).flat()))]
+  const uyeler = (h, g) => ((T.akran[h] || {})[g] || []);
+  const kisiler = [...new Set(T.mentorler.flatMap(m => [m.ad, ...m.ekip]))]
     .sort((a, b) => a.localeCompare(b, "tr"));
   const sel = document.getElementById("kisi");
   sel.innerHTML += kisiler.map(k => `<option>${esc(k)}</option>`).join("") + `<option>Şevki Danacıoğlu</option>`;
@@ -84,31 +85,34 @@
     if ((m = s.match(/^(\d{1,2})[./](\d{1,2})[./](\d{4})/))) return `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}`;
     return "";
   };
+  /* Form: "Toplantı" sütunu "H1-A · …" ile başlar; alanlar "H1-A · Tarih" gibi adlandırılır.
+     Aynı hafta ve grup için son "Planlandı" tarih/saati günceller; "Yapıldı" katılımı kaydeder. */
   const akranOku = satirlar => {
     const harita = {};
-    satirlar.forEach((r, i) => {
-      const g = (r["Grup"] || "").trim().charAt(0).toUpperCase(); if (!T.akran[g]) return;
-      const al = k => r[`${g} grubu · ${k}`] || r[k] || "";
-      const t = tarihOku(al("Tarih")); if (!t) return;
-      const anahtar = g + t, yapildi = /yap[ıi]ld[ıi]/i.test(al("Bildirim türü"));
-      const kat = al("Katılanlar").split(/,\s*/).filter(Boolean);
-      const eski = harita[anahtar];
-      if (!eski || yapildi || !eski.yapildi)
-        harita[anahtar] = { g, t, saat: al("Saat").slice(0, 5), moderator: al("Moderatör"), yapildi: yapildi || (eski && eski.yapildi),
-          katilan: yapildi ? kat : (eski ? eski.katilan : []), sira: i };
+    satirlar.forEach(r => {
+      const m = (r["Toplantı"] || "").match(/^(H\d)-([A-E])/); if (!m) return;
+      const [, h, g] = m, key = `${h}-${g}`; if (!uyeler(h, g).length) return;
+      const al = k => r[`${key} · ${k}`] || "";
+      const yapildi = /yap[ıi]ld[ıi]/i.test(al("Bildirim türü"));
+      const t = tarihOku(al("Tarih")), saat = al("Saat").slice(0, 5);
+      const o = harita[key] || (harita[key] = { h, g, t: "", saat: "", yapildi: false, katilan: [] });
+      if (t) { o.t = t; o.saat = saat || o.saat; }
+      if (yapildi) { o.yapildi = true; o.katilan = al("Katılanlar").split(/,\s*/).filter(Boolean); }
     });
-    return Object.values(harita);
+    return Object.values(harita).filter(o => o.t).map(o => ({ ...o, katilmayan: uyeler(o.h, o.g).filter(x => !o.katilan.includes(x)) }));
   };
 
   /* --- Takvim çizimi --- */
   const ilgili = (o, k) => !k || o.herkes || (o.kimler || []).includes(k);
   function ciz() {
     const k = sel.value;
-    const tum = olaylar.concat(akran.map(a => ({
-      t: a.t, tur: "akran", saat: a.saat, baslik: `Grup ${a.g}`,
-      alt: a.yapildi ? `Yapıldı · ${a.katilan.length}/${T.akran[a.g].length} katılım` : `Planlandı${a.moderator ? " · moderatör: " + a.moderator : ""}`,
-      kimler: T.akran[a.g], durum: a.yapildi ? "yapildi" : "plan"
-    })));
+    const tum = olaylar.concat(akran.map(a => {
+      const n = uyeler(a.h, a.g).length;
+      return { t: a.t, tur: "akran", saat: a.saat, baslik: `Akran ${a.g}${a.yapildi ? ` ✓ ${a.katilan.length}/${n}` : ""}`,
+        alt: a.yapildi ? (a.katilmayan.length ? "Katılmadı: " + a.katilmayan.join(", ") : "Herkes katıldı")
+                       : "Planlandı · " + uyeler(a.h, a.g).join(", "),
+        kimler: uyeler(a.h, a.g), durum: a.yapildi ? (a.katilmayan.length ? "yapildi eksikli" : "yapildi") : "plan" };
+    }));
     const gor = tum.filter(o => acik.has(o.tur) && ilgili(o, k));
     const gunluk = {};
     gor.forEach(o => (gunluk[o.t] = gunluk[o.t] || []).push(o));
@@ -134,27 +138,41 @@
     takip();
   }
 
-  /* --- Akran grupları ve haftalık takip --- */
-  document.getElementById("akran-gruplar").innerHTML = Object.entries(T.akran).map(([g, l]) =>
-    `<div><strong>Grup ${g}</strong><span>${l.map(esc).join(" · ")}</span></div>`).join("");
+  /* --- Haftalık akran grupları ve takip --- */
+  const buHafta = (T.akranHaftalar.slice().reverse().find(w => w.bas <= bugun) || T.akranHaftalar[0]).id;
+  let seciliHafta = buHafta;
+  function gruplariCiz() {
+    const k = sel.value;
+    document.getElementById("akran-gruplar").innerHTML =
+      `<div class="filters hafta-sec" role="group" aria-label="Hafta">${T.akranHaftalar.map(w =>
+        `<button type="button" data-h="${w.id}" aria-pressed="${w.id === seciliHafta}">${esc(w.ad)}</button>`).join("")}</div>` +
+      Object.entries(T.akran[seciliHafta] || {}).map(([g, l]) =>
+        `<div class="${k && l.includes(k) ? "benim" : ""}"><strong>${seciliHafta}-${g}</strong><span>${l.map(esc).join(" · ")}</span></div>`).join("");
+  }
+  document.getElementById("akran-gruplar").addEventListener("click", e => {
+    const b = e.target.closest("button[data-h]"); if (b) { seciliHafta = b.dataset.h; gruplariCiz(); }
+  });
   document.getElementById("form-dugme").innerHTML = T.akranForm
     ? `<a class="btn" href="${esc(T.akranForm)}" target="_blank" rel="noopener">Akran toplantısı bildir →</a>`
     : `<p class="muted" style="margin:8px 0 0">Bildirim formu bağlantısı WhatsApp grubunda paylaşılacak.</p>`;
 
   function takip() {
-    const haftalar = [];
-    for (let w = bas; w <= son; w = ekle(w, 7)) haftalar.push(w);
+    gruplariCiz();
     const k = sel.value;
-    const gruplar = Object.keys(T.akran).filter(g => !k || T.akran[g].includes(k));
+    const satir = ["A", "B", "C", "D", "E"];
     document.getElementById("akran-takip").innerHTML = `<table class="akran-tablo"><thead><tr><th>Grup</th>
-      ${haftalar.map((w, h) => `<th>${h === 0 ? "Hazırlık" : h <= 4 ? h + ". hafta" : "Kapanış"}<br><span class="muted">${w.getDate()} ${AY[w.getMonth()]}</span></th>`).join("")}</tr></thead><tbody>
-      ${gruplar.map(g => `<tr><td><strong>${g}</strong></td>${haftalar.map(w => {
-        const a = iso(w), b = iso(ekle(w, 6));
-        const l = akran.filter(x => x.g === g && x.t >= a && x.t <= b).sort((x, y) => x.t.localeCompare(y.t));
-        if (!l.length) return `<td class="${b < bugun ? "eksik" : ""}">${b < bugun ? "Bildirim yok" : "—"}</td>`;
-        return `<td>${l.map(x => x.yapildi
-          ? `<span class="durum yapildi">✓ ${tarih(x.t).getDate()} ${AY[tarih(x.t).getMonth()]} · ${x.katilan.length}/${T.akran[g].length}</span>`
-          : `<span class="durum plan">⏳ ${tarih(x.t).getDate()} ${AY[tarih(x.t).getMonth()]} ${esc(x.saat)}</span>`).join("<br>")}</td>`;
+      ${T.akranHaftalar.map(w => `<th>${esc(w.ad)}<br><span class="muted">${tarih(w.bas).getDate()} ${AY[tarih(w.bas).getMonth()]}</span></th>`).join("")}</tr></thead><tbody>
+      ${satir.map(g => `<tr><td><strong>${g}</strong></td>${T.akranHaftalar.map(w => {
+        const l = uyeler(w.id, g), benim = k && l.includes(k), gizli = k && !benim;
+        const son = iso(ekle(tarih(w.bas), 6)), x = akran.find(a => a.h === w.id && a.g === g);
+        const uye = `<span class="uyeler">${l.map(esc).join(", ")}</span>`;
+        let ic;
+        if (gizli) ic = `<span class="muted">·</span>`;
+        else if (!x) ic = son < bugun ? `<span class="durum eksik">Bildirim yok</span>` : `<span class="muted">—</span>`;
+        else if (!x.yapildi) ic = `<span class="durum plan">⏳ ${tarih(x.t).getDate()} ${AY[tarih(x.t).getMonth()]} ${esc(x.saat)}</span>`;
+        else ic = `<span class="durum yapildi">✓ ${tarih(x.t).getDate()} ${AY[tarih(x.t).getMonth()]} · ${x.katilan.length}/${l.length}</span>` +
+          (x.katilmayan.length ? `<span class="katilmayan">Katılmadı: ${x.katilmayan.map(esc).join(", ")}</span>` : "");
+        return `<td class="${benim ? "benim" : ""}">${ic}${gizli ? "" : uye}</td>`;
       }).join("")}</tr>`).join("")}</tbody></table>`;
   }
 
@@ -163,7 +181,7 @@
   if (T.akranCsv) {
     fetch(T.akranCsv + (T.akranCsv.includes("?") ? "&" : "?") + "t=" + Date.now())
       .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
-      .then(txt => { akran = akranOku(csvParse(txt)); durum.textContent = `${akran.length} akran toplantısı bildirildi · son güncelleme ${new Date().toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" })}`; ciz(); })
+      .then(txt => { akran = akranOku(csvParse(txt)); durum.textContent = `${akran.length} akran toplantısı bildirildi (${akran.filter(a => a.yapildi).length} yapıldı) · son güncelleme ${new Date().toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" })}`; ciz(); })
       .catch(() => { durum.textContent = "Akran toplantıları şu anda yüklenemedi; sayfayı biraz sonra yenile."; });
   } else durum.textContent = "Akran toplantıları, bildirim formu açıldığında burada görünecek.";
 })();

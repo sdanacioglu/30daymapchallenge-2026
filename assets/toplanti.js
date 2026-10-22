@@ -2,7 +2,7 @@
    Yalnızca ad soyad; iletişim bilgisi ve toplantı bağlantısı bu dosyaya girmez.
    Mentör toplantı saati belli olunca "saat" alanını doldurun (ör. "19:00"); gün değişirse "gun" alanını
    (0 = Pazartesi … 6 = Pazar) güncelleyin.
-   Akran toplantıları, Google Form yanıt tablosunun "Web'de yayınla → CSV" bağlantısından okunur (akranCsv). */
+   Akran toplantıları (haftalık gruplar), Google Form yanıt tablosunun "Web'de yayınla → CSV" bağlantısından okunur (akranCsv). */
 window.TOPLANTI = {
   baslangic: "2026-10-26",          // ilk pazartesi
   bitis: "2026-12-06",              // son pazar
@@ -17,17 +17,55 @@ window.TOPLANTI = {
   mentorToplanti: { ilk: "2026-10-26", son: "2026-11-29" },
 
   mentorler: [
-    { ad: "Merve Nur Öz", gun: 1, saat: "", ekip: ["Burak Çevik", "Nebahat Ecem Akkanım", "Mehmet Ali Yanmaz", "Yaren Taktuk", "Başak Barin"] },
-    { ad: "Selim Mirsat Gül", gun: 1, saat: "", ekip: ["Zuhal Evren", "Efe Koçer", "İremnur Albayrak", "İrem Beytüt", "Yağmur Tuana Eltemur"] },
-    { ad: "Emre Koçan", gun: 1, saat: "", ekip: ["Ferid Şahin", "Damla Çakmak", "Can Kaya", "Efe Coşkun Dönmez", "Eflin Özbilgin", "Gülçin Kekeç"] },
+    { ad: "Merve Nur Öz", gun: 1, saat: "", ekip: ["Burak Çevik", "Nebahat Ecem Akkanım", "Yaren Taktuk", "Başak Barin", "Yağmur Tuana Eltemur"] },
+    { ad: "Selim Mirsat Gül", gun: 1, saat: "", ekip: ["Zuhal Evren", "Ferid Şahin", "Mehmet Ali Yanmaz", "İremnur Albayrak", "İrem Beytüt"] },
+    { ad: "Emre Koçan", gun: 1, saat: "", ekip: ["Efe Koçer", "Damla Çakmak", "Can Kaya", "Efe Coşkun Dönmez", "Eflin Özbilgin", "Gülçin Kekeç"] },
     { ad: "Umut Ceyran", gun: 1, saat: "", ekip: ["Mustafa Baran Arslan", "İpek Baran", "Nisan Demirkahyalılar", "Meral Külkaya", "Serkan Türkkan"] }
   ],
 
+  /* Akran grupları her hafta yeniden oluşturulur (aynı iki kişi en fazla iki kez buluşur). */
+  akranHaftalar: [
+    { id: "H0", ad: "Hazırlık haftası", bas: "2026-10-26" },
+    { id: "H1", ad: "1. hafta", bas: "2026-11-02" },
+    { id: "H2", ad: "2. hafta", bas: "2026-11-09" },
+    { id: "H3", ad: "3. hafta", bas: "2026-11-16" },
+    { id: "H4", ad: "4. hafta", bas: "2026-11-23" }
+  ],
   akran: {
-    A: ["Burak Çevik", "Damla Çakmak", "İrem Beytüt", "Serkan Türkkan"],
-    B: ["Nebahat Ecem Akkanım", "Can Kaya", "Nisan Demirkahyalılar", "Yağmur Tuana Eltemur"],
-    C: ["Zuhal Evren", "Mehmet Ali Yanmaz", "Efe Coşkun Dönmez", "Meral Külkaya"],
-    D: ["Efe Koçer", "İpek Baran", "Yaren Taktuk", "Eflin Özbilgin"],
-    E: ["Ferid Şahin", "Mustafa Baran Arslan", "İremnur Albayrak", "Başak Barin", "Gülçin Kekeç"]
+    H0: {
+      A: ["Damla Çakmak", "Nebahat Ecem Akkanım", "Yaren Taktuk", "Zuhal Evren"],
+      B: ["Başak Barin", "Ferid Şahin", "Mustafa Baran Arslan", "Serkan Türkkan"],
+      C: ["Burak Çevik", "Can Kaya", "Efe Coşkun Dönmez", "Meral Külkaya"],
+      D: ["Eflin Özbilgin", "Gülçin Kekeç", "Nisan Demirkahyalılar", "İremnur Albayrak"],
+      E: ["Efe Koçer", "Mehmet Ali Yanmaz", "Yağmur Tuana Eltemur", "İpek Baran", "İrem Beytüt"]
+    },
+    H1: {
+      A: ["Efe Koçer", "Meral Külkaya", "Mustafa Baran Arslan", "Zuhal Evren"],
+      B: ["Efe Coşkun Dönmez", "Gülçin Kekeç", "Mehmet Ali Yanmaz", "Yaren Taktuk"],
+      C: ["Başak Barin", "Burak Çevik", "Eflin Özbilgin", "İrem Beytüt"],
+      D: ["Damla Çakmak", "Ferid Şahin", "Nisan Demirkahyalılar", "İpek Baran"],
+      E: ["Can Kaya", "Nebahat Ecem Akkanım", "Serkan Türkkan", "Yağmur Tuana Eltemur", "İremnur Albayrak"]
+    },
+    H2: {
+      A: ["Efe Coşkun Dönmez", "Serkan Türkkan", "Zuhal Evren", "İrem Beytüt"],
+      B: ["Damla Çakmak", "Gülçin Kekeç", "Meral Külkaya", "Yağmur Tuana Eltemur"],
+      C: ["Eflin Özbilgin", "Ferid Şahin", "Mehmet Ali Yanmaz", "Nebahat Ecem Akkanım"],
+      D: ["Burak Çevik", "Mustafa Baran Arslan", "İpek Baran", "İremnur Albayrak"],
+      E: ["Başak Barin", "Can Kaya", "Efe Koçer", "Nisan Demirkahyalılar", "Yaren Taktuk"]
+    },
+    H3: {
+      A: ["Burak Çevik", "Efe Koçer", "Gülçin Kekeç", "Serkan Türkkan"],
+      B: ["Başak Barin", "Damla Çakmak", "Mehmet Ali Yanmaz", "İremnur Albayrak"],
+      C: ["Meral Külkaya", "Nebahat Ecem Akkanım", "Nisan Demirkahyalılar", "İrem Beytüt"],
+      D: ["Can Kaya", "Eflin Özbilgin", "Zuhal Evren", "İpek Baran"],
+      E: ["Efe Coşkun Dönmez", "Ferid Şahin", "Mustafa Baran Arslan", "Yaren Taktuk", "Yağmur Tuana Eltemur"]
+    },
+    H4: {
+      A: ["Eflin Özbilgin", "Meral Külkaya", "Serkan Türkkan", "Yaren Taktuk"],
+      B: ["Ferid Şahin", "Gülçin Kekeç", "Nebahat Ecem Akkanım", "İpek Baran"],
+      C: ["Başak Barin", "Efe Coşkun Dönmez", "Efe Koçer", "İremnur Albayrak"],
+      D: ["Can Kaya", "Damla Çakmak", "Mustafa Baran Arslan", "İrem Beytüt"],
+      E: ["Burak Çevik", "Mehmet Ali Yanmaz", "Nisan Demirkahyalılar", "Yağmur Tuana Eltemur", "Zuhal Evren"]
+    }
   }
 };

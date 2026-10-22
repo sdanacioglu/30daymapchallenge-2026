@@ -423,3 +423,12 @@ section[id] { scroll-margin-top: 80px; }
   .tk-cal .day.bos { display: none; }
   .tk-cal .tk-olay { font-size: .78rem; }
 }
+.hafta-sec { margin: 0 0 6px; }
+.hafta-sec button { padding: 5px 11px; font-size: .8rem; }
+.akran-gruplar .benim, .akran-tablo td.benim { background: color-mix(in srgb, var(--accent) 14%, transparent); border-radius: 8px; }
+.akran-gruplar > div:not(.filters) { padding: 4px 6px; }
+.akran-tablo td { white-space: normal; min-width: 150px; vertical-align: top; text-align: left; }
+.akran-tablo .uyeler { display: block; font-size: .72rem; color: var(--muted); margin-top: 3px; }
+.akran-tablo .katilmayan { display: block; font-size: .76rem; color: var(--hard); font-weight: 600; }
+.durum.eksik { color: var(--hard); }
+.tk-olay.eksikli small { color: var(--hard); font-weight: 600; }
