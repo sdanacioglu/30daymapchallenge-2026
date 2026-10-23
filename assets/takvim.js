@@ -12,8 +12,9 @@
   const bugun = iso(new Date());
   const fold = s => String(s || "").toLocaleLowerCase("tr").trim();
 
-  /* Öğrenci takvimi: yalnızca mentör ve akran toplantıları */
+  /* Öğrenci takvimi: genel, mentör ve akran toplantıları */
   const TUR = {
+    genel:  { ad: "Genel toplantı", cls: "t-genel" },
     mentor: { ad: "Mentör toplantısı", cls: "t-mentor" },
     akran:  { ad: "Akran toplantısı", cls: "t-akran" }
   };
@@ -23,6 +24,10 @@
   const bas = tarih(T.baslangic), son = tarih(T.bitis);
   for (let d = bas; d <= son; d = ekle(d, 1)) {
     const s = iso(d), g = hg(d);
+    if (g === T.genel.gun && s >= T.genel.ilk && s <= T.genel.son) {
+      const ist = (T.genel.istisna || {})[s] || {};
+      olaylar.push({ t: ist.tarih || s, tur: "genel", saat: T.genel.saat, baslik: "Genel toplantı", alt: ist.not || "Tüm ekip", herkes: true });
+    }
     if (s >= T.mentorToplanti.ilk && s <= T.mentorToplanti.son)
       T.mentorler.forEach(m => {
         if (g === m.gun) olaylar.push({ t: s, tur: "mentor", saat: m.saat || "", baslik: m.ad.split(" ")[0] + " ekibi",
@@ -114,7 +119,7 @@
         <span class="d">${d.getDate()} ${AY[d.getMonth()]} · ${GUNK[hg(d)]}</span>
         ${tm ? `<span class="t">${esc(tm.en)}</span>` : ""}
         ${l.map(o => `<div class="tk-olay ${TUR[o.tur].cls}${o.durum ? " " + o.durum : ""}" title="${esc(o.baslik + " · " + o.alt)}">
-          ${o.saat ? `<span class="tk-saat">${esc(o.saat)}</span>` : ""}<span class="tk-ad">${esc(o.baslik)}</span>${o.tur === "akran" ? `<small>${esc(o.alt)}</small>` : ""}</div>`).join("")}
+          ${o.saat ? `<span class="tk-saat">${esc(o.saat)}</span>` : ""}<span class="tk-ad">${esc(o.baslik)}</span>${o.tur === "akran" || (o.tur === "genel" && o.alt !== "Tüm ekip") ? `<small>${esc(o.alt)}</small>` : ""}</div>`).join("")}
       </div>`;
     }
     document.getElementById("takvim").innerHTML = html;
