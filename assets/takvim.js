@@ -12,12 +12,10 @@
   const bugun = iso(new Date());
   const fold = s => String(s || "").toLocaleLowerCase("tr").trim();
 
+  /* Öğrenci takvimi: yalnızca mentör ve akran toplantıları */
   const TUR = {
-    genel:  { ad: "Genel toplantı", cls: "t-genel" },
     mentor: { ad: "Mentör toplantısı", cls: "t-mentor" },
-    akran:  { ad: "Akran toplantısı", cls: "t-akran" },
-    koord:  { ad: "Koordinasyon", cls: "t-koord" },
-    final:  { ad: "Final teslim", cls: "t-final" }
+    akran:  { ad: "Akran toplantısı", cls: "t-akran" }
   };
 
   /* --- Sabit olaylar --- */
@@ -25,31 +23,18 @@
   const bas = tarih(T.baslangic), son = tarih(T.bitis);
   for (let d = bas; d <= son; d = ekle(d, 1)) {
     const s = iso(d), g = hg(d);
-    if (g === T.koordinasyon.gun && s >= T.koordinasyon.ilk && s <= T.koordinasyon.son)
-      olaylar.push({ t: s, tur: "koord", saat: T.koordinasyon.saat, baslik: "Koordinasyon", alt: "Koordinatör + mentörler", kimler: T.mentorler.map(m => m.ad).concat("Şevki Danacıoğlu") });
-    if (g === T.genel.gun && s >= T.genel.ilk && s <= T.genel.son) {
-      const ist = (T.genel.istisna || {})[s] || {};
-      olaylar.push({ t: ist.tarih || s, tur: "genel", saat: T.genel.saat, baslik: "Genel toplantı", alt: ist.not || "Tüm ekip", herkes: true });
-    }
     if (s >= T.mentorToplanti.ilk && s <= T.mentorToplanti.son)
       T.mentorler.forEach(m => {
         if (g === m.gun) olaylar.push({ t: s, tur: "mentor", saat: m.saat || "", baslik: m.ad.split(" ")[0] + " ekibi",
           alt: "Mentör: " + m.ad, kimler: [m.ad].concat(m.ekip) });
       });
   }
-  /* Final teslimleri (harita gününden 3 gün önce) */
-  Object.entries(EKIP.gunler).forEach(([n, l]) => {
-    const tm = TEMALAR.find(x => x.n === +n) || {};
-    const d = ekle(new Date(2026, 10, +n), -CONFIG.finalOffset);
-    olaylar.push({ t: iso(d), tur: "final", saat: "", baslik: `Gün ${n} finali`, alt: `${tm.en || ""} · ${l.map(p => p.ad).join(", ")}`, kimler: l.map(p => p.ad) });
-  });
-
   /* --- Kişi listesi --- */
   const uyeler = (h, g) => ((T.akran[h] || {})[g] || []);
   const kisiler = [...new Set(T.mentorler.flatMap(m => [m.ad, ...m.ekip]))]
     .sort((a, b) => a.localeCompare(b, "tr"));
   const sel = document.getElementById("kisi");
-  sel.innerHTML += kisiler.map(k => `<option>${esc(k)}</option>`).join("") + `<option>Şevki Danacıoğlu</option>`;
+  sel.innerHTML += kisiler.map(k => `<option>${esc(k)}</option>`).join("");
 
   /* --- Tür filtresi --- */
   const acik = new Set(Object.keys(TUR));
@@ -129,7 +114,7 @@
         <span class="d">${d.getDate()} ${AY[d.getMonth()]} · ${GUNK[hg(d)]}</span>
         ${tm ? `<span class="t">${esc(tm.en)}</span>` : ""}
         ${l.map(o => `<div class="tk-olay ${TUR[o.tur].cls}${o.durum ? " " + o.durum : ""}" title="${esc(o.baslik + " · " + o.alt)}">
-          ${o.saat ? `<span class="tk-saat">${esc(o.saat)}</span>` : ""}<span class="tk-ad">${esc(o.baslik)}</span>${o.tur === "akran" || o.tur === "genel" && o.alt !== "Tüm ekip" ? `<small>${esc(o.alt)}</small>` : ""}</div>`).join("")}
+          ${o.saat ? `<span class="tk-saat">${esc(o.saat)}</span>` : ""}<span class="tk-ad">${esc(o.baslik)}</span>${o.tur === "akran" ? `<small>${esc(o.alt)}</small>` : ""}</div>`).join("")}
       </div>`;
     }
     document.getElementById("takvim").innerHTML = html;
