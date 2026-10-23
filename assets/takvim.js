@@ -131,11 +131,15 @@
   /* --- Haftalık akran grupları ve takip --- */
   const buHafta = (T.akranHaftalar.slice().reverse().find(w => w.bas <= bugun) || T.akranHaftalar[0]).id;
   let seciliHafta = buHafta;
+  /* "26 Eki – 1 Kas" ya da "2–8 Kas" */
+  const aralik = w => { const a = tarih(w.bas), b = ekle(a, 6);
+    return a.getMonth() === b.getMonth() ? `${a.getDate()}–${b.getDate()} ${AY[b.getMonth()]}` : `${a.getDate()} ${AY[a.getMonth()]} – ${b.getDate()} ${AY[b.getMonth()]}`; };
   function gruplariCiz() {
     const k = sel.value;
     document.getElementById("akran-gruplar").innerHTML =
       `<div class="filters hafta-sec" role="group" aria-label="Hafta">${T.akranHaftalar.map(w =>
-        `<button type="button" data-h="${w.id}" aria-pressed="${w.id === seciliHafta}">${esc(w.ad)}</button>`).join("")}</div>` +
+        `<button type="button" data-h="${w.id}" aria-pressed="${w.id === seciliHafta}">${esc(w.ad)}<small>${aralik(w)}</small></button>`).join("")}</div>` +
+      `<p class="hafta-baslik"><strong>${esc(T.akranHaftalar.find(w => w.id === seciliHafta).ad)}</strong> · ${aralik(T.akranHaftalar.find(w => w.id === seciliHafta))}</p>` +
       Object.entries(T.akran[seciliHafta] || {}).map(([g, l]) =>
         `<div class="${k && l.includes(k) ? "benim" : ""}"><strong>${seciliHafta}-${g}</strong><span>${l.map(esc).join(" · ")}</span></div>`).join("");
   }
@@ -151,7 +155,7 @@
     const k = sel.value;
     const satir = ["A", "B", "C", "D", "E"];
     document.getElementById("akran-takip").innerHTML = `<table class="akran-tablo"><thead><tr><th>Grup</th>
-      ${T.akranHaftalar.map(w => `<th>${esc(w.ad)}<br><span class="muted">${tarih(w.bas).getDate()} ${AY[tarih(w.bas).getMonth()]}</span></th>`).join("")}</tr></thead><tbody>
+      ${T.akranHaftalar.map(w => `<th>${esc(w.ad)}<br><span class="muted">${aralik(w)}</span></th>`).join("")}</tr></thead><tbody>
       ${satir.map(g => `<tr><td><strong>${g}</strong></td>${T.akranHaftalar.map(w => {
         const l = uyeler(w.id, g), benim = k && l.includes(k), gizli = k && !benim;
         const son = iso(ekle(tarih(w.bas), 6)), x = akran.find(a => a.h === w.id && a.g === g);

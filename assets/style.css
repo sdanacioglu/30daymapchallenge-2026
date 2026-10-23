@@ -432,3 +432,5 @@ section[id] { scroll-margin-top: 80px; }
 .akran-tablo .katilmayan { display: block; font-size: .76rem; color: var(--hard); font-weight: 600; }
 .durum.eksik { color: var(--hard); }
 .tk-olay.eksikli small { color: var(--hard); font-weight: 600; }
+.hafta-sec button small { display: block; font-size: .7rem; font-weight: 500; opacity: .8; }
+.hafta-baslik { margin: 6px 0 4px; font-size: .92rem; }
