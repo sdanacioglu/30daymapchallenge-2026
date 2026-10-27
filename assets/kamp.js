@@ -21,9 +21,9 @@ Emin olmadığın bilgiye "doğrulanmalı" yaz; bağlantı ya da veri seti uydur
 `Bir coğrafya öğrencisine anlatır gibi [YÖNTEM] yöntemini açıkla (ör. kernel yoğunluğu, sıcak nokta analizi, doğal kırılmalar sınıflaması).
 Ne işe yarar, hangi veriyle ve ne zaman kullanılır, hangi varsayımları vardır, sonucu nasıl yorumlarım ve en sık hangi hatalar yapılır?
 Ardından "[SORU]" sorusu için bu yöntemin uygun olup olmadığını değerlendir; uygun değilse alternatif öner ve nedenini söyle.` },
-    { adim: "ArcGIS Pro · hata ayıklama", metin:
-`ArcGIS Pro'da [ARAÇ ya da İŞLEM] çalıştırırken şu hatayı alıyorum: "[HATA MESAJI]".
-Girdi verim: [biçim, koordinat sistemi, yaklaşık boyut]. Olası 3 nedeni olasılık sırasıyla yaz ve her birini ArcGIS Pro'da nasıl kontrol edeceğimi menü adlarıyla adım adım anlat.` },
+    { adim: "Hata ayıklama", metin:
+`[ArcGIS Pro / QGIS / kullandığım araç] içinde [ARAÇ ya da İŞLEM] çalıştırırken şu hatayı alıyorum: "[HATA MESAJI]".
+Girdi verim: [biçim, koordinat sistemi, yaklaşık boyut]. Olası 3 nedeni olasılık sırasıyla yaz ve her birini bu programda nasıl kontrol edeceğimi menü adlarıyla adım adım anlat.` },
     { adim: "Taslak · jüri gözüyle", metin:
 `Ekteki taslak haritayı bir #30DayMapChallenge jürisi gibi değerlendir: okunabilirlik, renk ve kontrast (renk körlüğü dâhil), tipografi, temaya uygunluk, özgünlük.
 Her ölçüte 1–3 puan ver, gerekçesini tek cümleyle açıkla ve en büyük etkiyi yaratacak tek iyileştirmeyi öner.` },
@@ -35,10 +35,11 @@ Metin: [AÇIKLAMA]` }
 
   const YT = "video · John Nelson";
   const MODULLER = [
-    { id: "baslarken", no: 1, ad: "ArcGIS Pro'ya başlarken", ozet: "Arayüz, proje, harita ve yerleşim (layout) mantığı. ArcGIS Pro'yu ilk kez açıyorsan buradan başla.",
+    { id: "baslarken", no: 1, ad: "Haritalama aracına başlarken", ozet: "Arayüz, proje, harita ve yerleşim (layout) mantığı. ArcGIS Pro ya da QGIS'i ilk kez açıyorsan buradan başla.",
       alistirma: "Boş bir proje aç, günün temasına uygun bir katman ekle ve 10,8 × 13,5 inçlik (1080 × 1350 px) bir yerleşim oluştur.", kaynaklar: [
         { b: "Get started with ArcGIS Pro", u: "https://learn.arcgis.com/en/projects/get-started-with-arcgis-pro/", t: "ders · Learn ArcGIS", d: "EN", s: "45 dk" },
         { b: "Try ArcGIS Pro (öğrenme yolu: veri keşfi, sembolleştirme, paylaşım)", u: "https://learn.arcgis.com/en/paths/try-arcgis-pro/", t: "ders dizisi · Learn ArcGIS", d: "EN" },
+        { b: "QGIS ve diğer araçlar için kaynaklar (Bakırçay CBS Eğitim Kaynakları)", u: "https://sdanacioglu.github.io/bakircay-cbs-egitim-kaynaklari/", t: "arşiv", d: "TR/EN" },
         { b: "Introduction to exporting a map or layout", u: "https://doc.esri.com/en/arcgis-pro/latest/help/sharing/overview/export-a-map-or-layout.html", t: "belge · Esri", d: "EN", n: "piksel boyutu = sayfa boyutu (inç) × dpi" }
       ] },
     { id: "tasarim", no: 2, ad: "Kartografik tasarımın temelleri", ozet: "Renk, görsel hiyerarşi, tipografi ve yerleşim: her haritayı ilgilendiren temel kararlar.",
@@ -49,7 +50,7 @@ Metin: [AÇIKLAMA]` }
         { b: "Taming Typography with ArcGIS Pro", u: "https://www.esri.com/arcgis-blog/products/mapping/mapping/taming-typography-with-arcgis-pro", t: "yazı · Kenneth Field", d: "EN" },
         { b: "ColorBrewer: haritalar için renk şemaları", u: "https://colorbrewer2.org/", t: "araç", d: "EN" }
       ] },
-    { id: "gorsel-etki", no: 3, ad: "ArcGIS Pro'da görsel etki teknikleri", ozet: "Kod yazmadan haritayı ilk bakışta değiştiren teknikler. Hepsini öğrenmen gerekmiyor: temana uyan bir ya da ikisini seç.",
+    { id: "gorsel-etki", no: 3, ad: "Görsel etki teknikleri", ozet: "Kod yazmadan haritayı ilk bakışta değiştiren teknikler. Örnekler ArcGIS Pro üzerinden; katman harmanlama, gölgeli kabartma, etiket haleleri ve gölge efektlerinin QGIS'te de karşılığı var. Hepsini öğrenmen gerekmiyor: temana uyan bir ya da ikisini seç.",
       alistirma: "Aynı haritanın iki sürümünü dışa aktar: biri düz, biri tek bir görsel etki tekniğiyle. Hangisi sorunu daha iyi yanıtlıyor? Yanıtını yapım notundaki tasarım kararına yaz.", kaynaklar: [], gruplar: [
         { ad: "Katman harmanlama ve saydamlık", kaynaklar: [
           { b: "How to Make Your ArcGIS Pro Map Awesome with One Blend Mode", u: "https://www.youtube.com/watch?v=AHAvL_hrWTo", t: YT, d: "EN", s: "2:25" },
