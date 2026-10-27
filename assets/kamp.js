@@ -6,8 +6,8 @@
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   const PROMPTLAR = [
-    { adim: "Soru · klişe avı", metin:
-`Deneyimli bir kartografya editörü gibi düşün. #30DayMapChallenge'ın "[TEMA]" teması için en sık görülen 5 harita yaklaşımını listele ve her birinin neden klişe olduğunu tek cümleyle açıkla.
+    { adim: "Soru · bu temada sık yapılanlar", metin:
+`Deneyimli bir kartografya editörü gibi düşün. #30DayMapChallenge'ın "[TEMA]" teması için en sık yapılan 5 harita yaklaşımını listele ve her birinin neden bu kadar sık tercih edildiğini tek cümleyle açıkla.
 Ardından bu beşine benzemeyen, [YER] için uygulanabilir 3 yaklaşım öner. Her biri için yanıtladığı soruyu ve kullanılabilecek açık veri türünü yaz.` },
     { adim: "Kâğıt eskiz · eleştiri", metin:
 `Ekteki kâğıt eskizim, "[TEMA]" teması için "[SORU]" sorusunu yanıtlayacak 1080 × 1350 px dikey bir harita.
@@ -86,7 +86,7 @@ Metin: [AÇIKLAMA]` }
         { b: "Bakırçay CBS Açık Veri Kaynakları arşivi", u: "https://sdanacioglu.github.io/bakircay-cbs-acik-veri-kaynaklari/", t: "arşiv", d: "TR" }
       ] },
     { id: "yapay-zeka-modul", no: 5, ad: "Yapay zekâ ile sorumlu çalışmak", ozet: "Yapay zekâyı fikir tartışması, hata ayıklama ve eleştiri için kullanmak; sınırlarını bilmek.",
-      alistirma: "Klişe avı sorusunu kendi temanla sor; çıkan 5 klişeden hangisine en yakın olduğunu ve ondan nasıl uzaklaşacağını yaz.", kaynaklar: [
+      alistirma: "\"Bu temada en sık yapılan haritalar\" sorusunu kendi temanla sor; çıkan yaklaşımlardan hangisine en yakın olduğunu ve nasıl farklılaşacağını yaz.", kaynaklar: [
         { b: "Kamp: yapay zekâ ilkeleri", u: "#yapay-zeka", t: "sayfa", d: "TR" },
         { b: "Kamp: soru örnekleri", u: "#promptlar", t: "sayfa", d: "TR" },
         { b: "The Ethics of AI-Generated Maps (Kang, Zhang & Roth)", u: "https://arxiv.org/abs/2304.10743v3", t: "makale", d: "EN", n: "yapay zekâ haritalarında hata ve yanıltma riskleri" },
@@ -139,6 +139,33 @@ Metin: [AÇIKLAMA]` }
       try { localStorage.setItem("kamp-kontrol", JSON.stringify(kutular.map(x => x.checked))); } catch (e) { }
     });
   });
+
+  /* Adım tarihleri: harita günü seçilince her adımın gerçek tarihi */
+  const AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+  const GUNLER = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
+  const gs = document.getElementById("kamp-gun");
+  if (gs && window.TEMALAR) {
+    gs.innerHTML += TEMALAR.filter(t => t.level !== "group").map(t => `<option value="${t.n}">${t.n} Kasım · ${esc(t.en)}</option>`).join("");
+    const adimlar = [...document.querySelectorAll(".adimlar li[data-once]")];
+    const varsayilan = adimlar.map(li => li.querySelector(".tarih").textContent);
+    const bugun = new Date(); bugun.setHours(0, 0, 0, 0);
+    const goster = () => {
+      const n = +gs.value;
+      adimlar.forEach((li, i) => {
+        const t = li.querySelector(".tarih"), son = li.classList.contains("final");
+        li.classList.remove("gecti");
+        if (!n) { t.textContent = varsayilan[i]; return; }
+        const d = new Date(2026, 10, n - +li.dataset.once);
+        const gecti = d < bugun && !son;
+        t.textContent = `${d.getDate()} ${AYLAR[d.getMonth()]} ${GUNLER[d.getDay()]}` + (son ? " (son gün)" : "") + (gecti ? " · tarihi geçti, hemen yap" : "");
+        li.classList.toggle("gecti", gecti);
+      });
+      document.getElementById("kamp-gun-not").textContent = n ? "Tarihler önerilir; yalnızca final tarihi kesindir." : "";
+      try { localStorage.setItem("kamp-gun", gs.value); } catch (e) { }
+    };
+    try { const v = localStorage.getItem("kamp-gun"); if (v) gs.value = v; } catch (e) { }
+    gs.addEventListener("change", goster); goster();
+  }
 
   if (location.hash) setTimeout(() => document.querySelector(location.hash)?.scrollIntoView(), 60);
 })();

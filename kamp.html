@@ -8,7 +8,7 @@
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css?v=202610280028">
 </head>
 <body data-page="kaynaklar">
   <header id="site-header"></header>
@@ -31,29 +31,41 @@
     <section id="yol">
       <div class="wrap">
         <h2>1. Fikirden teslime 7 adım</h2>
-        <p class="muted">G = harita günün. Final teslimi değişmez: <strong>G−3</strong>. Ara adımlar seni oraya rahat taşımak için.
-          İlk hafta (1–8 Kasım) günleri bu adımları toplantıdan sonraki birkaç güne sıkıştırır.</p>
+        <p class="muted">Haritanı 7 adımda hazırlarsın. <strong>Final teslimi harita gününden 3 gün önce.</strong>
+          Diğer adımlar seni oraya rahatça taşımak için önerilen zamanlar.</p>
+        <div class="card adim-tarih">
+          <label for="kamp-gun"><strong>Harita günün:</strong></label>
+          <select id="kamp-gun"><option value="">Seç; adımların tarihleri görünsün</option></select>
+          <span class="muted" id="kamp-gun-not"></span>
+        </div>
         <ol class="adimlar">
-          <li><span class="zaman">G−14</span><strong>Soru</strong>
+          <li data-once="14"><span class="adim-no">1</span><strong>Haritanın sorusunu belirle</strong>
+            <span class="ne-zaman">📅 <span class="tarih">Harita gününden 2 hafta önce</span></span>
             <p>Haritanın cevaplayacağı <em>tek</em> soruyu yaz. "Su" değil; "İzmir'in hangi mahalleleri yaz aylarında en uzun su kesintisini yaşıyor?"</p>
-            <span class="yz y-yesil">Yapay zekâ: klişe avı için serbest</span></li>
-          <li><span class="zaman">G−12</span><strong>İlham ve fark</strong>
+            <span class="yz y-yesil">Yapay zekâ: bu temada en sık yapılan haritaları sormak için serbest</span></li>
+          <li data-once="12"><span class="adim-no">2</span><strong>Örnek haritalara bak, farkını bul</strong>
+            <span class="ne-zaman">📅 <span class="tarih">Harita gününden 12 gün önce</span></span>
             <p><a href="temalar.html">Temalar</a> sayfasındaki örnek haritalardan 3'ünü incele. "Benim haritamın farkı ne olacak?" sorusunu iki cümleyle yanıtla.</p>
-            <span class="yz y-yesil">Yapay zekâ: örneklerin yöntemini açıklatmak için serbest</span></li>
-          <li><span class="zaman">G−10</span><strong>Kâğıt eskiz</strong>
+            <span class="yz y-yesil">Yapay zekâ: örneklerin nasıl yapıldığını açıklatmak için serbest</span></li>
+          <li data-once="10"><span class="adim-no">3</span><strong>Kâğıda eskiz çiz</strong>
+            <span class="ne-zaman">📅 <span class="tarih">Harita gününden 10 gün önce</span></span>
             <p><strong>Önce kendin:</strong> 10 dakikada, yapay zekâsız, iki kaba yerleşim çiz. <strong>Sonra tartış:</strong> eskizini yapay zekâya
               anlat ya da fotoğrafını göster; eleştirisini al. <strong>Son olarak:</strong> öğrendiklerinle üçüncü eskizi yine elle çiz.</p>
             <span class="yz y-yesil">Yapay zekâ: eskizlerden sonra fikir tartışması için</span></li>
-          <li><span class="zaman">G−9</span><strong>Veri</strong>
+          <li data-once="9"><span class="adim-no">4</span><strong>Veriyi bul</strong>
+            <span class="ne-zaman">📅 <span class="tarih">Harita gününden 9 gün önce</span></span>
             <p>Veriyi bul, kaynağını ve yılını not et. <a href="kaynaklar.html">Kaynaklar</a> sayfası ve açık veri arşivi başlangıç noktan.</p>
             <span class="yz y-yesil">Yapay zekâ: kaynak önerisi serbest; her kaynağı açıp doğrula</span></li>
-          <li><span class="zaman">G−7</span><strong>ArcGIS Pro taslağı</strong>
-            <p>Eskizini haritaya dönüştür. Takıldığın yerde modüllere ve görsel etki tekniklerine bak.</p>
+          <li data-once="7"><span class="adim-no">5</span><strong>ArcGIS Pro'da taslağı hazırla</strong>
+            <span class="ne-zaman">📅 <span class="tarih">Harita gününden 1 hafta önce</span></span>
+            <p>Eskizini haritaya dönüştür. Takıldığın yerde modüllere ve görsel etki tekniklerine bak. Mentör toplantısına bu taslakla gel.</p>
             <span class="yz y-sari">Yapay zekâ: hata ayıklama serbest; üretilen kod ya da model yapım notuna yazılır</span></li>
-          <li><span class="zaman">G−6</span><strong>Geri bildirim</strong>
+          <li data-once="6"><span class="adim-no">6</span><strong>Geri bildirim al</strong>
+            <span class="ne-zaman">📅 <span class="tarih">Harita gününden 6 gün önce</span></span>
             <p>Taslağını mentörüne ya da bir arkadaşına göster. "İşe yarayan / geliştirilebilir / soru" kalıbıyla görüş iste.</p>
             <span class="yz y-yesil">Yapay zekâ: ikinci bir eleştirmen olarak serbest; son karar senin</span></li>
-          <li><span class="zaman">G−3</span><strong>Final ve yapım notu</strong>
+          <li data-once="3" class="final"><span class="adim-no">7</span><strong>Finali ve yapım notunu teslim et</strong>
+            <span class="ne-zaman">📅 <span class="tarih">Harita gününden 3 gün önce (son gün)</span></span>
             <p>PNG'ni ve 5 satırlık <a href="#yapim-notu">yapım notunu</a> teslim et. <a href="#kontrol">Kontrol listesine</a> son bir kez bak.</p>
             <span class="yz y-yesil">Yapay zekâ: yazım ve İngilizce özet için serbest</span></li>
         </ol>
@@ -68,7 +80,7 @@
           hızlanmana ve hata ayıklamana yardım eder.</p>
         <div class="grid-3 isik">
           <div class="card y-yesil"><h3>🟢 Serbest</h3><ul>
-            <li>Soru sormak, fikir tartışmak, klişeleri listeletmek</li>
+            <li>Soru sormak, fikir tartışmak, bu temada sık yapılan haritaları listeletmek</li>
             <li>Veri kaynağı önerisi almak (doğrulayarak)</li>
             <li>ArcGIS Pro hata mesajlarını çözmek</li>
             <li>Taslağını eleştirtmek, renk körlüğü uygunluğunu sormak</li>
@@ -139,8 +151,8 @@ Yapay zekâ: Kullanılmadı / … için kullanıldı</pre>
   </main>
 
   <footer id="site-footer"></footer>
-  <script src="assets/data.js"></script>
-  <script src="assets/site.js"></script>
-  <script src="assets/kamp.js"></script>
+  <script src="assets/data.js?v=202610280028"></script>
+  <script src="assets/site.js?v=202610280028"></script>
+  <script src="assets/kamp.js?v=202610280028"></script>
 </body>
 </html>

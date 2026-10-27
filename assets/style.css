@@ -436,3 +436,15 @@ section[id] { scroll-margin-top: 80px; }
 .tk-olay.eksikli small { color: var(--hard); font-weight: 600; }
 .hafta-sec button small { display: block; font-size: .7rem; font-weight: 500; opacity: .8; }
 .hafta-baslik { margin: 6px 0 4px; font-size: .92rem; }
+
+/* Kamp: numaralı adımlar */
+.adim-tarih { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 0 0 14px; padding: 14px 16px; }
+.adim-tarih select { font: inherit; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--text); max-width: 100%; }
+.adimlar li { padding-left: 64px; }
+.adimlar .adim-no { position: absolute; left: 16px; top: 14px; width: 32px; height: 32px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 800; display: grid; place-items: center; }
+.adimlar .ne-zaman { display: block; font-size: .88rem; font-weight: 600; color: var(--brand-ink); margin-top: 2px; }
+.adimlar li.final .adim-no { background: var(--accent); }
+.adimlar li.final .ne-zaman { color: var(--accent); }
+.adimlar li.gecti .ne-zaman { color: var(--hard); }
+@media (prefers-color-scheme: dark) { .adimlar .adim-no { color: #0d1515; } }
+@media (max-width: 640px) { .adimlar li { padding-left: 60px; } }
