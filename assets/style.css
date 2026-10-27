@@ -448,3 +448,5 @@ section[id] { scroll-margin-top: 80px; }
 .adimlar li.gecti .ne-zaman { color: var(--hard); }
 @media (prefers-color-scheme: dark) { .adimlar .adim-no { color: #0d1515; } }
 @media (max-width: 640px) { .adimlar li { padding-left: 60px; } }
+
+.isik .kod-not { margin: 10px 0 0; font-size: .86rem; border-top: 1px dashed var(--line); padding-top: 8px; }

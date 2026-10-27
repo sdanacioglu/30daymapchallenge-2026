@@ -17,6 +17,10 @@ Hazır çözüm önerme; tasarımımı geliştirmemi sağlayacak 3 soru sor.` },
 `[YER] için [KONU] hakkında açık lisanslı, indirilebilir veri setleri arıyorum.
 Yalnızca resmî ya da tanınmış kaynakları listele: kurum, veri seti adı, kapsadığı yıllar, biçim ve lisans.
 Emin olmadığın bilgiye "doğrulanmalı" yaz; bağlantı ya da veri seti uydurma.` },
+    { adim: "Yöntemini öğren", metin:
+`Bir coğrafya öğrencisine anlatır gibi [YÖNTEM] yöntemini açıkla (ör. kernel yoğunluğu, sıcak nokta analizi, doğal kırılmalar sınıflaması).
+Ne işe yarar, hangi veriyle ve ne zaman kullanılır, hangi varsayımları vardır, sonucu nasıl yorumlarım ve en sık hangi hatalar yapılır?
+Ardından "[SORU]" sorusu için bu yöntemin uygun olup olmadığını değerlendir; uygun değilse alternatif öner ve nedenini söyle.` },
     { adim: "ArcGIS Pro · hata ayıklama", metin:
 `ArcGIS Pro'da [ARAÇ ya da İŞLEM] çalıştırırken şu hatayı alıyorum: "[HATA MESAJI]".
 Girdi verim: [biçim, koordinat sistemi, yaklaşık boyut]. Olası 3 nedeni olasılık sırasıyla yaz ve her birini ArcGIS Pro'da nasıl kontrol edeceğimi menü adlarıyla adım adım anlat.` },
@@ -86,7 +90,7 @@ Metin: [AÇIKLAMA]` }
         { b: "Bakırçay CBS Açık Veri Kaynakları arşivi", u: "https://sdanacioglu.github.io/bakircay-cbs-acik-veri-kaynaklari/", t: "arşiv", d: "TR" }
       ] },
     { id: "yapay-zeka-modul", no: 5, ad: "Yapay zekâ ile sorumlu çalışmak", ozet: "Yapay zekâyı fikir tartışması, hata ayıklama ve eleştiri için kullanmak; sınırlarını bilmek.",
-      alistirma: "\"Bu temada en sık yapılan haritalar\" sorusunu kendi temanla sor; çıkan yaklaşımlardan hangisine en yakın olduğunu ve nasıl farklılaşacağını yaz.", kaynaklar: [
+      alistirma: "Haritanda kullanacağın yöntemi \"Yöntemini öğren\" sorusuyla öğren; yapım notunun yöntem satırını kendi cümlelerinle yaz: ne yapar, neden uygun, nelere dikkat ettin.", kaynaklar: [
         { b: "Kamp: yapay zekâ ilkeleri", u: "#yapay-zeka", t: "sayfa", d: "TR" },
         { b: "Kamp: soru örnekleri", u: "#promptlar", t: "sayfa", d: "TR" },
         { b: "The Ethics of AI-Generated Maps (Kang, Zhang & Roth)", u: "https://arxiv.org/abs/2304.10743v3", t: "makale", d: "EN", n: "yapay zekâ haritalarında hata ve yanıltma riskleri" },

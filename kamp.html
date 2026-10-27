@@ -8,7 +8,7 @@
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=202610280028">
+  <link rel="stylesheet" href="assets/style.css?v=202610280033">
 </head>
 <body data-page="kaynaklar">
   <header id="site-header"></header>
@@ -59,7 +59,7 @@
           <li data-once="7"><span class="adim-no">5</span><strong>ArcGIS Pro'da taslağı hazırla</strong>
             <span class="ne-zaman">📅 <span class="tarih">Harita gününden 1 hafta önce</span></span>
             <p>Eskizini haritaya dönüştür. Takıldığın yerde modüllere ve görsel etki tekniklerine bak. Mentör toplantısına bu taslakla gel.</p>
-            <span class="yz y-sari">Yapay zekâ: hata ayıklama serbest; üretilen kod ya da model yapım notuna yazılır</span></li>
+            <span class="yz y-sari">Yapay zekâ: veri hazırlama ve analiz kodu yazdırabilirsin; tasarım elle. Kod dosyası teslime eklenir</span></li>
           <li data-once="6"><span class="adim-no">6</span><strong>Geri bildirim al</strong>
             <span class="ne-zaman">📅 <span class="tarih">Harita gününden 6 gün önce</span></span>
             <p>Taslağını mentörüne ya da bir arkadaşına göster. "İşe yarayan / geliştirilebilir / soru" kalıbıyla görüş iste.</p>
@@ -76,26 +76,34 @@
     <section id="yapay-zeka">
       <div class="wrap">
         <h2>2. Yapay zekâyı sorumlu kullanmak</h2>
-        <p class="muted"><strong>Temel ilke:</strong> Fikir, veri seçimi ve tasarım kararları senin. Yapay zekâ bunları sorgulamana,
-          hızlanmana ve hata ayıklamana yardım eder.</p>
+        <p class="muted"><strong>Temel ilke: Kod bir araçtır; analiz kararı ve tasarım senindir.</strong>
+          Yapay zekâ düşünmene, hızlanmana, hata ayıklamana ve yeni yöntemler öğrenmene yardım eder.</p>
         <div class="grid-3 isik">
           <div class="card y-yesil"><h3>🟢 Serbest</h3><ul>
             <li>Soru sormak, fikir tartışmak, bu temada sık yapılan haritaları listeletmek</li>
-            <li>Veri kaynağı önerisi almak (doğrulayarak)</li>
+            <li>Veri kaynağı önerisi almak (her kaynağı açıp doğrulayarak)</li>
+            <li>Bir yöntemi öğrenmek: nasıl çalışır, ne zaman kullanılır, sonucu nasıl yorumlanır</li>
             <li>ArcGIS Pro hata mesajlarını çözmek</li>
             <li>Taslağını eleştirtmek, renk körlüğü uygunluğunu sormak</li>
             <li>Metnin yazımını düzeltmek, İngilizce özet</li></ul></div>
           <div class="card y-sari"><h3>🟡 Yapım notunda belirterek</h3><ul>
-            <li>Yapay zekânın yazdığı kodla yapılan analiz</li>
+            <li><strong>Veri hazırlama kodu:</strong> indirme, temizleme, birleştirme, projeksiyon, tekrarlı işlemler</li>
+            <li><strong>Analiz kodu:</strong> yapay zekâ yöntem önerebilir ve kodu yazabilir; yöntemi sen anlamalı ve açıklayabilmelisin</li>
             <li>ArcGIS Pro'nun hazır derin öğrenme (GeoAI) modelleriyle sınıflandırma</li>
             <li>Yapay zekâyla üretilmiş ikon ya da doku</li>
-            <li>Yapay zekâ taslağından yeniden yazılmış metin</li></ul></div>
+            <li>Yapay zekâ taslağından yeniden yazılmış metin</li></ul>
+            <p class="kod-not">Kod kullandıysan <strong>kod dosyası teslim klasörüne konur</strong> (zorunlu, paylaşılmaz).</p></div>
           <div class="card y-kirmizi"><h3>🔴 Yok</h3><ul>
+            <li><strong>Tasarımı koda ya da yapay zekâya yaptırmak:</strong> sembol, renk, sınıflama, yerleşim ve tipografi ArcGIS Pro'da elle yapılır</li>
+            <li>Haritayı baştan sona yapay zekâya ürettirmek ya da ArcGIS'i ona yönettirmek</li>
             <li>Yapay zekânın ürettiği görseli harita olarak sunmak</li>
             <li>Doğrulanmamış ya da uydurma veri</li>
             <li>Başkasının haritasını yapay zekâyla taklit etmek</li>
             <li>Kişisel ya da lisanslı veriyi açık yapay zekâ araçlarına yüklemek</li></ul></div>
         </div>
+        <div class="note"><strong>Açıklayabilme kuralı:</strong> Haritanda kullandığın her kod adımını ve yöntemi açıklayabilmelisin.
+          Mentörün ya da akran grubun "Bu adım ne yapıyor?" diye sorduğunda cevap veremiyorsan o adımı öğrenip yeniden yaparsın.
+          Yöntemi bilmiyorsan sorun değil: <a href="#promptlar">"Yöntemini öğren"</a> sorusuyla yapay zekâdan sana öğretmesini iste.</div>
         <div class="note"><strong>10. gün (Prompting only) istisnadır:</strong> o günün konusu zaten yapay zekâ. Yine de kullandığın prompt'ları yapım notuna ekle.
           Yapay zekâ kullanımın paylaşımda yazılmaz; yalnızca yapım notunda, iç kayıt olarak tutulur.</div>
       </div>
@@ -125,12 +133,13 @@
       <div class="wrap grid-2">
         <div class="card">
           <h2>5. Yapım notu</h2>
-          <p class="muted">Finalinle birlikte teslim edilir. Paylaşılmaz; senin öğrenme kaydın ve paylaşım metninin hammaddesidir.</p>
+          <p class="muted">Finalinle birlikte teslim edilir (6 satır). Paylaşılmaz; senin öğrenme kaydın ve paylaşım metninin hammaddesidir.</p>
           <pre class="sablon" id="yapim-sablon">Soru: Haritam hangi soruyu yanıtlıyor?
 Veri: Kaynak, veri seti, yıl
-Yöntem: Hangi araçlar ve adımlar?
+Yöntem: Hangi yöntem? Ne yapar, neden bu soruya uygun, nelere dikkat ettim?
 Tasarım kararı: Neden bu renk, bu düzen, bu yazı tipi?
-Yapay zekâ: Kullanılmadı / … için kullanıldı</pre>
+Yapay zekâ: Kullanılmadı / … için kullanıldı
+Kod: Kullanılmadı / … için kullanıldı (dosya teslim klasöründe)</pre>
           <button type="button" class="btn ghost kopyala" data-hedef="yapim-sablon">Kopyala</button>
         </div>
         <div class="card" id="kontrol">
@@ -143,6 +152,7 @@ Yapay zekâ: Kullanılmadı / … için kullanıldı</pre>
             <li><label><input type="checkbox"> Renkler renk körlüğü için kontrol edildi</label></li>
             <li><label><input type="checkbox"> Yazım ve noktalama kontrol edildi</label></li>
             <li><label><input type="checkbox"> Açıklama metni ve yapım notu hazır</label></li>
+            <li><label><input type="checkbox"> Kod kullandıysam kod dosyası teslim klasöründe</label></li>
           </ul>
           <p class="muted" style="font-size:.9rem;margin:8px 0 0">İşaretler yalnızca bu tarayıcıda, senin için tutulur.</p>
         </div>
@@ -151,8 +161,8 @@ Yapay zekâ: Kullanılmadı / … için kullanıldı</pre>
   </main>
 
   <footer id="site-footer"></footer>
-  <script src="assets/data.js?v=202610280028"></script>
-  <script src="assets/site.js?v=202610280028"></script>
-  <script src="assets/kamp.js?v=202610280028"></script>
+  <script src="assets/data.js?v=202610280033"></script>
+  <script src="assets/site.js?v=202610280033"></script>
+  <script src="assets/kamp.js?v=202610280033"></script>
 </body>
 </html>
