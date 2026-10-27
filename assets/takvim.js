@@ -126,6 +126,23 @@
     const eksik = T.mentorler.filter(m => !m.saat).map(m => m.ad.split(" ")[0]);
     document.getElementById("takvim-not").textContent = eksik.length ? `Mentör toplantı saatleri belirlenince eklenecek (${eksik.join(", ")}).` : "";
     takip();
+    mentorCiz();
+  }
+
+  /* --- Mentör ekipleri: harita günleri ekip.js'ten --- */
+  const haritaGunu = ad => Object.keys((window.EKIP || {}).gunler || {})
+    .filter(n => EKIP.gunler[n].some(p => p.ad === ad)).map(Number);
+  function mentorCiz() {
+    const k = sel.value;
+    document.getElementById("mentor-ekipler").innerHTML = T.mentorler.map(m => {
+      const gun = `${["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"][m.gun]}${m.saat ? " · " + esc(m.saat) : ""}`;
+      return `<div class="card${k && (m.ad === k || m.ekip.includes(k)) ? " benim" : ""}">
+        <h3 style="margin-top:0">${esc(m.ad)}</h3>
+        <p class="muted" style="margin:0 0 8px">${m.ekip.length} kişi · ${gun}</p>
+        <ul>${m.ekip.map(ad => { const g = haritaGunu(ad);
+          return `<li class="${ad === k ? "benim" : ""}">${esc(ad)}${g.length ? ` <span class="muted">(${g.join(", ")})</span>` : ""}</li>`; }).join("")}</ul>
+      </div>`;
+    }).join("");
   }
 
   /* --- Haftalık akran grupları ve takip --- */
