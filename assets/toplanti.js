@@ -17,10 +17,10 @@ window.TOPLANTI = {
   mentorToplanti: { ilk: "2026-10-26", son: "2026-11-29" },
 
   mentorler: [
-    { ad: "Merve Nur Öz", gun: 1, saat: "", ekip: ["Burak Çevik", "Nebahat Ecem Akkanım", "Yaren Taktuk", "Başak Barin", "Yağmur Tuana Eltemur"] },
+    { ad: "Merve Nur Öz", gun: 5, saat: "20:00", ekip: ["Burak Çevik", "Nebahat Ecem Akkanım", "Yaren Taktuk", "Başak Barin", "Yağmur Tuana Eltemur"] },
     { ad: "Selim Mirsat Gül", gun: 1, saat: "", ekip: ["Zuhal Evren", "Ferid Şahin", "Mehmet Ali Yanmaz", "İremnur Albayrak", "İrem Beytüt"] },
-    { ad: "Emre Koçan", gun: 1, saat: "", ekip: ["Efe Koçer", "Damla Çakmak", "Can Kaya", "Efe Coşkun Dönmez", "Eflin Özbilgin", "Gülçin Kekeç"] },
-    { ad: "Umut Ceyran", gun: 1, saat: "", ekip: ["Mustafa Baran Arslan", "İpek Baran", "Nisan Demirkahyalılar", "Meral Külkaya", "Serkan Türkkan"] }
+    { ad: "Emre Koçan", gun: 0, saat: "20:00", ekip: ["Efe Koçer", "Damla Çakmak", "Can Kaya", "Efe Coşkun Dönmez", "Eflin Özbilgin", "Gülçin Kekeç"] },
+    { ad: "Umut Ceyran", gun: 1, saat: "20:00", ekip: ["Mustafa Baran Arslan", "İpek Baran", "Nisan Demirkahyalılar", "Meral Külkaya", "Serkan Türkkan"] }
   ],
 
   /* Akran grupları her hafta yeniden oluşturulur (aynı iki kişi en fazla iki kez buluşur). */
