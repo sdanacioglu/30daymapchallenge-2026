@@ -454,3 +454,5 @@ section[id] { scroll-margin-top: 80px; }
 .t-paylasim { --tc: #e0832f; }
 @media (prefers-color-scheme: dark) { .t-paylasim { --tc: #f0a159; } }
 .tk-olay.t-paylasim { background: color-mix(in srgb, var(--tc) 22%, transparent); font-weight: 700; }
+
+.tk-olay.t-final { background: color-mix(in srgb, var(--tc) 18%, transparent); font-weight: 700; }

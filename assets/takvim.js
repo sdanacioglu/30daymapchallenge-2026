@@ -17,6 +17,7 @@
     genel:  { ad: "Genel toplantı", cls: "t-genel" },
     mentor: { ad: "Mentör toplantısı", cls: "t-mentor" },
     akran:  { ad: "Akran toplantısı", cls: "t-akran" },
+    final: { ad: "Final teslimin", cls: "t-final" },
     paylasim: { ad: "Paylaşım günün", cls: "t-paylasim" }
   };
 
@@ -38,6 +39,8 @@
   /* Paylaşım günleri: yalnızca bir kişi seçildiğinde, o kişinin harita günü */
   Object.entries((window.EKIP || {}).gunler || {}).forEach(([n, l]) => {
     const tm = TEMALAR.find(x => x.n === +n) || {};
+    olaylar.push({ t: iso(new Date(2026, 10, +n - CONFIG.finalOffset)), tur: "final", saat: "",
+      baslik: `📤 Final teslim · Gün ${n}`, alt: tm.en || "", kimler: l.map(p => p.ad), kisiye: true });
     olaylar.push({ t: iso(new Date(2026, 10, +n)), tur: "paylasim", saat: +n === 10 ? "14:00" : CONFIG.postTime,
       baslik: `🗺️ Paylaşım · Gün ${n}`, alt: tm.en || "", kimler: l.map(p => p.ad), kisiye: true });
   });
@@ -103,7 +106,7 @@
   /* --- Takvim çizimi --- */
   const ilgili = (o, k) => o.kisiye ? !!k && o.kimler.includes(k) : (!k || o.herkes || (o.kimler || []).includes(k));
   function ciz() {
-    const pb = fb.querySelector('[data-t="paylasim"]'); if (pb) pb.hidden = !sel.value;
+    fb.querySelectorAll('[data-t="paylasim"], [data-t="final"]').forEach(b => { b.hidden = !sel.value; });
     const k = sel.value;
     const tum = olaylar.concat(akran.map(a => {
       const n = uyeler(a.h, a.g).length;
@@ -128,7 +131,7 @@
         <span class="d">${d.getDate()} ${AY[d.getMonth()]} · ${GUNK[hg(d)]}</span>
         ${tm ? `<span class="t">${esc(tm.en)}</span>` : ""}
         ${l.map(o => `<div class="tk-olay ${TUR[o.tur].cls}${o.durum ? " " + o.durum : ""}" title="${esc(o.baslik + " · " + o.alt)}">
-          ${o.saat ? `<span class="tk-saat">${esc(o.saat)}</span>` : ""}<span class="tk-ad">${esc(o.baslik)}</span>${o.tur === "akran" || o.tur === "paylasim" || (o.tur === "genel" && o.alt !== "Tüm ekip") ? `<small>${esc(o.alt)}</small>` : ""}</div>`).join("")}
+          ${o.saat ? `<span class="tk-saat">${esc(o.saat)}</span>` : ""}<span class="tk-ad">${esc(o.baslik)}</span>${o.tur === "akran" || o.tur === "paylasim" || o.tur === "final" || (o.tur === "genel" && o.alt !== "Tüm ekip") ? `<small>${esc(o.alt)}</small>` : ""}</div>`).join("")}
       </div>`;
     }
     document.getElementById("takvim").innerHTML = html;
