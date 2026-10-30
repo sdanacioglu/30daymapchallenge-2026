@@ -8,7 +8,7 @@
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css?v=202610301719">
+  <link rel="stylesheet" href="assets/style.css?v=202610310104">
 </head>
 <body data-page="rehber">
   <header id="site-header"></header>
@@ -107,8 +107,12 @@
               <li><strong>Hazırlayan ve veri kaynağı</strong>
                 <small><strong>Hazırlayan:</strong> ad soyad · <strong>Veri:</strong> kaynak ve yıl
                   (OSM için “© OpenStreetMap katkıcıları”).</small></li>
+              <li><strong>Ölçek ve koordinat sistemi</strong>
+                <small>Haritan gerçek bir coğrafyayı gösteriyorsa <strong>ölçek çubuğu</strong> ekle ve künyeye
+                  <strong>koordinat sistemini</strong> tek satır olarak yaz. Örn. <em>Koordinat sistemi: WGS 84 / Web Mercator (EPSG:3857)</em>.
+                  Geniş bir alanı Web Mercator'da gösteriyorsan ölçeğin yalnızca belirli bir enlemde doğru olduğunu unutma; gerekirse alana uygun bir projeksiyon seç.</small></li>
               <li><strong>Okumak için gerekenler</strong>
-                <small>Lejant, ölçek, kuzey oku: haritan gerektiriyorsa. Sanatsal bir çalışmada sade tutabilirsin.</small></li>
+                <small>Lejant ve kuzey oku: haritan gerektiriyorsa. Sanatsal ya da soyut bir çalışmada sade tutabilirsin.</small></li>
             </ol>
             <div class="btn-row">
               <a class="btn" href="assets/logo_seffaf.png" download="BakircayCBS_logo_seffaf.png">Logo · şeffaf (PNG)</a>
@@ -200,8 +204,8 @@
   </main>
 
   <footer id="site-footer"></footer>
-  <script src="assets/data.js?v=202610301719"></script>
-  <script src="assets/site.js?v=202610301719"></script>
+  <script src="assets/data.js?v=202610310104"></script>
+  <script src="assets/site.js?v=202610310104"></script>
   <script>
     (function () {
       const sel = document.getElementById("gun-sec"), out = document.getElementById("gun-sonuc");
