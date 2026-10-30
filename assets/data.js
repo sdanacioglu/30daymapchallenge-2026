@@ -9,6 +9,8 @@ window.CONFIG = {
   formEmbedUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdJqJ4LACK8BiOK5YI0nrLMM-2G4cx6Y9bDCVx8STHjznyDPw/viewform?embedded=true",
   // Formun normal (paylaşım) linki
   formUrl: "https://forms.gle/vdpHJvPb7DpriJ3d9",
+  // Final teslim formu: her sayfanın üstündeki şeritte görünür (boş bırakılırsa şerit gizlenir)
+  teslimForm: "https://docs.google.com/forms/d/e/1FAIpQLSf4WQC5CuMfvUpI1C6PYpdL-Iffg6Ms-E-7iyyToU3J1yiX4g/viewform",
   finalOffset: 3,              // final teslim: harita gününden kaç gün önce (herkes için aynı)
   ideaDeadline: "22 Ekim toplantısı",
   formDeadline: "19 Ekim 2026 Pazartesi, 20:00",

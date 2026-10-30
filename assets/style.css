@@ -456,3 +456,15 @@ section[id] { scroll-margin-top: 80px; }
 .tk-olay.t-paylasim { background: color-mix(in srgb, var(--tc) 22%, transparent); font-weight: 700; }
 
 .tk-olay.t-final { background: color-mix(in srgb, var(--tc) 18%, transparent); font-weight: 700; }
+
+/* Onay durumu */
+.onay-tablo td, .onay-tablo th { white-space: nowrap; }
+.onay-tablo td:nth-child(2) { white-space: normal; }
+.onay-tablo tr.yakin td { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.onay-tablo tr.gecmis td { opacity: .6; }
+
+/* Final teslim şeridi */
+.teslim-serit { background: var(--brand-soft); border-bottom: 1px solid var(--line); font-size: .88rem; }
+.teslim-serit .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 14px; padding: 7px 0; }
+.teslim-serit .teslim-linkler { display: flex; gap: 14px; }
+.teslim-serit a { font-weight: 700; color: var(--brand-ink); }

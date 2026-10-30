@@ -199,6 +199,52 @@
       }).join("")}</tr>`).join("")}</tbody></table>`;
   }
 
+
+  /* --- Mentör onayı: teslim → onay → paylaşım --- */
+  let onay = {};
+  const mentorOf = ad => { const m = T.mentorler.find(x => x.ekip.includes(ad)); return m ? m.ad : "Koordinatör"; };
+  function onayCiz() {
+    const el = document.getElementById("onay-tablo"); if (!el) return;
+    const k = sel.value;
+    const satirlar = Object.entries((window.EKIP || {}).gunler || {}).map(([n, l]) => {
+      const kisiler = l.map(p => p.ad), mentor = mentorOf(kisiler[0]);
+      return { n: +n, kisiler, mentor, final: new Date(2026, 10, +n - CONFIG.finalOffset), o: onay[+n] };
+    }).filter(r => !k || r.kisiler.includes(k) || r.mentor === k).sort((a, b) => a.n - b.n);
+    const fmt = d => `${d.getDate()} ${AY[d.getMonth()]}`;
+    const simdi = new Date(); simdi.setHours(0, 0, 0, 0);
+    el.innerHTML = `<table class="onay-tablo"><thead><tr><th>Gün</th><th>Hazırlayan</th><th>Onaylayan</th><th>Final</th><th>Paylaşım</th><th>Durum</th></tr></thead><tbody>
+      ${satirlar.map(r => {
+        const pay = new Date(2026, 10, r.n), yakin = pay >= simdi && (pay - simdi) / 864e5 <= 3;
+        let d;
+        if (r.o && /onay/i.test(r.o.karar) && !/düzelt/i.test(r.o.karar)) d = `<span class="durum yapildi">✓ Onaylandı</span><span class="muted"> ${esc(r.o.tarih)}</span>`;
+        else if (r.o) d = `<span class="durum plan">✎ Düzeltme bekleniyor</span><span class="muted"> ${esc(r.o.tarih)}</span>`;
+        else if (r.final < simdi) d = `<span class="durum eksik">Onay bekleniyor</span>`;
+        else d = `<span class="muted">Teslim bekleniyor</span>`;
+        return `<tr class="${yakin ? "yakin" : ""}${pay < simdi ? " gecmis" : ""}"><td><strong>${r.n}</strong> <span class="muted">${esc((TEMALAR.find(t => t.n === r.n) || {}).en || "")}</span></td>
+          <td>${r.kisiler.map(esc).join(", ")}</td><td>${esc(r.mentor)}</td><td>${fmt(r.final)}</td><td>${fmt(pay)}</td><td>${d}</td></tr>`;
+      }).join("")}</tbody></table>`;
+  }
+  document.getElementById("onay-dugme").innerHTML = T.onayForm
+    ? `<div class="btn-row" style="margin:0 0 12px"><a class="btn ghost" href="${esc(T.onayForm)}" target="_blank" rel="noopener">Mentör onayı bildir →</a></div>` : "";
+  sel.addEventListener("change", onayCiz);
+  onayCiz();
+  const onayDurum = document.getElementById("onay-durum");
+  if (T.onayCsv) {
+    fetch(T.onayCsv + (T.onayCsv.includes("?") ? "&" : "?") + "t=" + Date.now())
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(txt => {
+        onay = {};
+        csvParse(txt).forEach(r => {                     // satırlar zaman sırasında: son karar geçerli
+          const m = (r["Gün"] || "").match(/Gün\s*(\d+)/); if (!m) return;
+          const z = (r["Zaman damgası"] || "").match(/^(\d{1,2})[./](\d{1,2})/);
+          onay[+m[1]] = { karar: r["Karar"] || "", mentor: r["Mentör"] || "", tarih: z ? `${+z[1]} ${AY[+z[2] - 1]}` : "" };
+        });
+        onayDurum.textContent = `${Object.values(onay).filter(o => /^onay$/i.test(o.karar.trim())).length} harita onaylandı · son güncelleme ${new Date().toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" })}`;
+        onayCiz();
+      })
+      .catch(() => { onayDurum.textContent = "Onay durumu şu anda yüklenemedi; sayfayı biraz sonra yenile."; });
+  } else onayDurum.textContent = "Mentör onayı formu açıldığında kararlar burada görünecek.";
+
   ciz();
   const durum = document.getElementById("akran-durum");
   if (T.akranCsv) {

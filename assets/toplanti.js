@@ -9,6 +9,9 @@ window.TOPLANTI = {
   akranForm: "https://forms.gle/wh9opMhayG1qrqwF8",                    // öğrencilerin dolduracağı form bağlantısı (forms.gle/…)
   akranCsv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQRXwgy4Npe8p1IMhia6YJSPQnoQHymlPHaE4UJ4VWMRAn9FauzFZ219FW-1gMPD6uxuu2SUN5yXr7H/pub?gid=1982373967&single=true&output=csv",                     // yanıt tablosunun yayımlanmış CSV bağlantısı
 
+  onayForm: "https://forms.gle/n92Vu8i5at4zTSXDA",                     // mentör onayı formu (forms.gle/…)
+  onayCsv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vTjo4FT89TmRKbSbMpV1zug4YhEl43idY1oJQReGSbhYD9SGRvoaf3I4VHOPJ0FuYCsIpyz9fRrxXvr/pub?gid=529080939&single=true&output=csv",                      // mentör onayı yanıt tablosunun yayımlanmış CSV bağlantısı
+
   /* Sabit toplantılar */
   koordinasyon: { gun: 0, saat: "12:00", ilk: "2026-10-26", son: "2026-11-30" },
   genel: { gun: 3, saat: "20:00", ilk: "2026-10-26", son: "2026-12-06",

@@ -48,6 +48,15 @@
             `<a href="${href}"${cls ? ` class="${cls}"` : ""}${key === page ? ' aria-current="page"' : ""}>${label}</a>`).join("")}
         </nav>
       </div>`;
+    /* Final teslim şeridi: her sayfada menünün altında */
+    if (CONFIG.teslimForm) {
+      const serit = document.createElement("div");
+      serit.className = "teslim-serit";
+      serit.innerHTML = `<div class="wrap"><span>📤 <strong>Final teslim:</strong> harita gününden 3 gün önce, 23:59</span>
+        <span class="teslim-linkler"><a href="${esc(CONFIG.teslimForm)}" target="_blank" rel="noopener">Teslim formu →</a>
+        <a href="takvim.html">Takvimim</a></span></div>`;
+      header.after(serit);
+    }
   }
   const footer = document.getElementById("site-footer");
   if (footer) {
