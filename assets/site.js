@@ -27,7 +27,7 @@
   const page = document.body.dataset.page;
   const nav = [
     ["index.html", "home", "Etkinlik"],
-    ["temalar.html", "temalar", "Temalar"],
+    ["takvim.html", "takvim", "Etkinlik takvimi"],
     ["ekip.html", "ekip", "Ekip"],
     ["rehber.html", "rehber", "Rehber"],
     ["kaynaklar.html", "kaynaklar", "Kaynaklar"],
@@ -54,7 +54,7 @@
       serit.className = "teslim-serit";
       serit.innerHTML = `<div class="wrap"><span>📤 <strong>Final teslim:</strong> harita gününden 3 gün önce, 23:59</span>
         <span class="teslim-linkler"><a href="${esc(CONFIG.teslimForm)}" target="_blank" rel="noopener">Teslim formu →</a>
-        <a href="takvim.html">Takvimim</a></span></div>`;
+        <a href="takvim.html">Etkinlik takvimi</a></span></div>`;
       header.after(serit);
     }
   }
