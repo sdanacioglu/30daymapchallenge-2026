@@ -167,4 +167,5 @@ window.TEMALAR = [
    --------------------------------------------------------- */
 window.KOLEKSIYON = [
   {"n": 1, "date": "2026-11-01", "title": "Türkiye UFO Sightings", "author": "Burak Çevik", "image": "maps/gun01.jpg", "data": "NUFORC UFO Kayıtları (1950-2026), NASA VIIRS Earth at Night (2026)", "tool": "ArcGIS Pro", "link": ""},
+  {"n": 2, "date": "2026-11-02", "title": "EVLIYA ÇELEBI'S THREE MAJOR TRAVEL ROUTES:ISTANBUL-BASED VOYAGE(1640-1672)", "author": "Zuhal Evren", "image": "maps/gun02.jpg", "data": "Evliya Çelebi Seyahatname Kitabı (Güzergah verileri), Esri Living Atlas (2026).", "tool": "ArcGIS Pro, Canva / Illustrator", "link": ""},
 ];
