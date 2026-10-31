@@ -166,4 +166,5 @@ window.TEMALAR = [
      data: "AFAD", tool: "QGIS", link: "https://www.instagram.com/p/..." },
    --------------------------------------------------------- */
 window.KOLEKSIYON = [
+  {"n": 1, "date": "2026-11-01", "title": "Türkiye UFO Sightings", "author": "Burak Çevik", "image": "maps/gun01.jpg", "data": "NUFORC UFO Kayıtları (1950-2026), NASA VIIRS Earth at Night (2026)", "tool": "ArcGIS Pro", "link": ""},
 ];
