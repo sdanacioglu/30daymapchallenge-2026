@@ -433,6 +433,11 @@ section[id] { scroll-margin-top: 80px; }
 .akran-tablo .uyeler { display: block; font-size: .72rem; color: var(--muted); margin-top: 3px; }
 .akran-tablo .katilmayan { display: block; font-size: .76rem; color: var(--hard); font-weight: 600; }
 .durum.eksik { color: var(--hard); }
+.durum.bekliyor { color: var(--brand); display: inline-flex; align-items: center; gap: 6px; animation: bekliyor-yazi 2.4s ease-in-out infinite; }
+.durum.bekliyor::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--brand); animation: bekliyor-nokta 2.4s ease-in-out infinite; }
+@keyframes bekliyor-yazi { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@keyframes bekliyor-nokta { 0%, 100% { opacity: 1; box-shadow: 0 0 0 0 color-mix(in srgb, var(--brand) 45%, transparent); } 50% { opacity: .35; box-shadow: 0 0 0 4px transparent; } }
+@media (prefers-reduced-motion: reduce) { .durum.bekliyor, .durum.bekliyor::before { animation: none; } }
 .tk-olay.eksikli small { color: var(--hard); font-weight: 600; }
 .hafta-sec button small { display: block; font-size: .7rem; font-weight: 500; opacity: .8; }
 .hafta-baslik { margin: 6px 0 4px; font-size: .92rem; }

@@ -219,7 +219,7 @@
         if (r.o && /onay/i.test(r.o.karar) && !/düzelt/i.test(r.o.karar)) d = `<span class="durum yapildi">✓ Onaylandı</span><span class="muted"> ${esc(r.o.tarih)}</span>`;
         else if (r.o) d = `<span class="durum plan">✎ Düzeltme bekleniyor</span><span class="muted"> ${esc(r.o.tarih)}</span>`;
         else if (r.final < simdi) d = `<span class="durum eksik">Onay bekleniyor</span>`;
-        else d = `<span class="muted">Teslim bekleniyor</span>`;
+        else d = `<span class="durum bekliyor">Teslim bekleniyor</span>`;
         return `<tr class="${yakin ? "yakin" : ""}${pay < simdi ? " gecmis" : ""}"><td><strong>${r.n}</strong> <span class="muted">${esc((TEMALAR.find(t => t.n === r.n) || {}).en || "")}</span></td>
           <td>${r.kisiler.map(esc).join(", ")}</td><td>${esc(r.mentor)}</td><td>${fmt(r.final)}</td><td>${fmt(pay)}</td><td>${d}</td></tr>`;
       }).join("")}</tbody></table>`;
