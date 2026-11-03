@@ -212,6 +212,7 @@
     }).filter(r => !k || r.kisiler.includes(k) || r.mentor === k).sort((a, b) => a.n - b.n);
     const fmt = d => `${d.getDate()} ${AY[d.getMonth()]}`;
     const simdi = new Date(); simdi.setHours(0, 0, 0, 0);
+    let ilkBekleyen = false; // yalnızca teslimi en yakın olan satır yanıp söner
     el.innerHTML = `<table class="onay-tablo"><thead><tr><th>Gün</th><th>Hazırlayan</th><th>Onaylayan</th><th>Final</th><th>Paylaşım</th><th>Durum</th></tr></thead><tbody>
       ${satirlar.map(r => {
         const pay = new Date(2026, 10, r.n), yakin = pay >= simdi && (pay - simdi) / 864e5 <= 3;
@@ -219,7 +220,8 @@
         if (r.o && /onay/i.test(r.o.karar) && !/düzelt/i.test(r.o.karar)) d = `<span class="durum yapildi">✓ Onaylandı</span><span class="muted"> ${esc(r.o.tarih)}</span>`;
         else if (r.o) d = `<span class="durum plan">✎ Düzeltme bekleniyor</span><span class="muted"> ${esc(r.o.tarih)}</span>`;
         else if (r.final < simdi) d = `<span class="durum eksik">Onay bekleniyor</span>`;
-        else d = `<span class="durum bekliyor">Teslim bekleniyor</span>`;
+        else if (!ilkBekleyen) { ilkBekleyen = true; d = `<span class="durum bekliyor">Teslim bekleniyor</span>`; }
+        else d = `<span class="muted">Teslim bekleniyor</span>`;
         return `<tr class="${yakin ? "yakin" : ""}${pay < simdi ? " gecmis" : ""}"><td><strong>${r.n}</strong> <span class="muted">${esc((TEMALAR.find(t => t.n === r.n) || {}).en || "")}</span></td>
           <td>${r.kisiler.map(esc).join(", ")}</td><td>${esc(r.mentor)}</td><td>${fmt(r.final)}</td><td>${fmt(pay)}</td><td>${d}</td></tr>`;
       }).join("")}</tbody></table>`;
