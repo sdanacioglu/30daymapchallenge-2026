@@ -3,7 +3,7 @@
    Haritalar KOLEKSIYON'dan (data.js) gün numarasıyla otomatik eşleşir. */
 window.EKIP = {
   taslak: false,
-  guncelleme: "21 Ekim 2026",
+  guncelleme: "4 Kasım 2026",
   gunler: {
     1: [{"ad": "Burak Çevik"}],
     2: [{"ad": "Zuhal Evren"}],
@@ -11,7 +11,7 @@ window.EKIP = {
     4: [{"ad": "Emre Koçan"}],
     5: [{"ad": "Umut Ceyran"}],
     6: [{"ad": "Nebahat Ecem Akkanım"}],
-    7: [{"ad": "Ferid Şahin"}],
+    7: [{"ad": "Umut Ceyran"}],
     8: [{"ad": "Mustafa Baran Arslan"}],
     9: [{"ad": "Damla Çakmak"}],
     10: [{"ad": "Mehmet Ali Yanmaz"}],

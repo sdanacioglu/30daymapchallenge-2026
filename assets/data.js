@@ -12,6 +12,7 @@ window.CONFIG = {
   // Final teslim formu: her sayfanın üstündeki şeritte görünür (boş bırakılırsa şerit gizlenir)
   teslimForm: "https://docs.google.com/forms/d/e/1FAIpQLSf4WQC5CuMfvUpI1C6PYpdL-Iffg6Ms-E-7iyyToU3J1yiX4g/viewform",
   finalOffset: 3,              // final teslim: harita gününden kaç gün önce (herkes için aynı)
+  finalOzel: { 7: 5 },         // gün devrinde yeni final (Kasım'ın günü): Gün 7 → 5 Kasım
   ideaDeadline: "22 Ekim toplantısı",
   formDeadline: "19 Ekim 2026 Pazartesi, 20:00",
   kickoff: "20 Ekim 2026 Salı · atamalar duyurulacak",

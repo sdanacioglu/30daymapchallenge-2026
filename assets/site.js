@@ -12,7 +12,7 @@
   const dateOf = n => new Date(2026, 10, n);
 
   /* Son teslim: herkes için harita gününden finalOffset gün önce */
-  const deadlineDate = t => dateOf(t.n - CONFIG.finalOffset);
+  const deadlineDate = t => dateOf((CONFIG.finalOzel || {})[t.n] || t.n - CONFIG.finalOffset);
   const deadlineOf = t => {
     if (t.level === "group") return "Etkinlikte birlikte";
     const d = deadlineDate(t);

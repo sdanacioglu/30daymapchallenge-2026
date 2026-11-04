@@ -39,7 +39,7 @@
   /* Paylaşım günleri: yalnızca bir kişi seçildiğinde, o kişinin harita günü */
   Object.entries((window.EKIP || {}).gunler || {}).forEach(([n, l]) => {
     const tm = TEMALAR.find(x => x.n === +n) || {};
-    olaylar.push({ t: iso(new Date(2026, 10, +n - CONFIG.finalOffset)), tur: "final", saat: "",
+    olaylar.push({ t: iso(new Date(2026, 10, (CONFIG.finalOzel || {})[+n] || +n - CONFIG.finalOffset)), tur: "final", saat: "",
       baslik: `📤 Final teslim · Gün ${n}`, alt: tm.en || "", kimler: l.map(p => p.ad), kisiye: true });
     olaylar.push({ t: iso(new Date(2026, 10, +n)), tur: "paylasim", saat: +n === 10 ? "14:00" : CONFIG.postTime,
       baslik: `🗺️ Paylaşım · Gün ${n}`, alt: tm.en || "", kimler: l.map(p => p.ad), kisiye: true });
@@ -208,7 +208,7 @@
     const k = sel.value;
     const satirlar = Object.entries((window.EKIP || {}).gunler || {}).map(([n, l]) => {
       const kisiler = l.map(p => p.ad), mentor = mentorOf(kisiler[0]);
-      return { n: +n, kisiler, mentor, final: new Date(2026, 10, +n - CONFIG.finalOffset), o: onay[+n] };
+      return { n: +n, kisiler, mentor, final: new Date(2026, 10, (CONFIG.finalOzel || {})[+n] || +n - CONFIG.finalOffset), o: onay[+n] };
     }).filter(r => !k || r.kisiler.includes(k) || r.mentor === k).sort((a, b) => a.n - b.n);
     const fmt = d => `${d.getDate()} ${AY[d.getMonth()]}`;
     const simdi = new Date(); simdi.setHours(0, 0, 0, 0);
