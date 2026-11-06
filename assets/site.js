@@ -193,6 +193,8 @@
 
   /* Collection */
   const gal = document.getElementById("gallery");
+  const profil = m => [[m.li, "LinkedIn"], [m.ig, "Instagram"]].filter(([u]) => u)
+    .map(([u, ad]) => ` · <a class="profil" href="${esc(u)}" target="_blank" rel="noopener">${ad}</a>`).join("");
   if (gal) {
     const d = new Date();
     const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -206,7 +208,7 @@
         <div class="body">
           <div class="meta">Gün ${m.n} · ${esc(t.en)} (${esc(t.tr)})</div>
           <h3 style="margin:4px 0">${esc(m.title)}</h3>
-          <div class="meta">👤 ${esc(m.author)}<br>📊 ${esc(m.data)} · 🛠️ ${esc(m.tool)}</div>
+          <div class="meta">👤 ${esc(m.author)}${profil(m)}<br>📊 ${esc(m.data)} · 🛠️ ${esc(m.tool)}</div>
           ${m.link ? `<a href="${esc(m.link)}" target="_blank" rel="noopener">Paylaşımı gör →</a>` : ""}
         </div></article>`;
     }).join("") : `<div class="card empty-state" style="grid-column:1/-1"><h3>İlk harita 1 Kasım'da burada</h3>
