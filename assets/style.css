@@ -473,3 +473,7 @@ section[id] { scroll-margin-top: 80px; }
 .teslim-serit .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 14px; padding: 7px 0; }
 .teslim-serit .teslim-linkler { display: flex; gap: 14px; }
 .teslim-serit a { font-weight: 700; color: var(--brand-ink); }
+.t-ortak { --tc: #8a4fc4; }
+@media (prefers-color-scheme: dark) { .t-ortak { --tc: #be93ee; } }
+.tk-olay.t-ortak { background: color-mix(in srgb, var(--tc) 22%, transparent); font-weight: 700; }
+.tk-olay a { color: inherit; text-decoration: underline; }

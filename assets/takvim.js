@@ -18,7 +18,8 @@
     mentor: { ad: "Mentör toplantısı", cls: "t-mentor" },
     akran:  { ad: "Akran toplantısı", cls: "t-akran" },
     final: { ad: "Final teslimin", cls: "t-final" },
-    paylasim: { ad: "Paylaşım günün", cls: "t-paylasim" }
+    paylasim: { ad: "Paylaşım günün", cls: "t-paylasim" },
+    ortak: { ad: "Ortak etkinlik", cls: "t-ortak" }
   };
 
   /* --- Sabit olaylar --- */
@@ -36,6 +37,7 @@
           alt: "Mentör: " + m.ad, kimler: [m.ad].concat(m.ekip) });
       });
   }
+  olaylar.push({ t: "2026-11-21", tur: "ortak", saat: "", baslik: "🌍 OSM Mapathon", alt: "İlçe ve katılımcılar", herkes: true, href: "mapathon.html" });
   /* Paylaşım günleri: yalnızca bir kişi seçildiğinde, o kişinin harita günü */
   Object.entries((window.EKIP || {}).gunler || {}).forEach(([n, l]) => {
     const tm = TEMALAR.find(x => x.n === +n) || {};
@@ -131,7 +133,7 @@
         <span class="d">${d.getDate()} ${AY[d.getMonth()]} · ${GUNK[hg(d)]}</span>
         ${tm ? `<span class="t">${esc(tm.en)}</span>` : ""}
         ${l.map(o => `<div class="tk-olay ${TUR[o.tur].cls}${o.durum ? " " + o.durum : ""}" title="${esc(o.baslik + " · " + o.alt)}">
-          ${o.saat ? `<span class="tk-saat">${esc(o.saat)}</span>` : ""}<span class="tk-ad">${esc(o.baslik)}</span>${o.tur === "akran" || o.tur === "paylasim" || o.tur === "final" || (o.tur === "genel" && o.alt !== "Tüm ekip") ? `<small>${esc(o.alt)}</small>` : ""}</div>`).join("")}
+          ${o.saat ? `<span class="tk-saat">${esc(o.saat)}</span>` : ""}<span class="tk-ad">${o.href ? `<a href="${esc(o.href)}">${esc(o.baslik)}</a>` : esc(o.baslik)}</span>${o.tur === "ortak" || o.tur === "akran" || o.tur === "paylasim" || o.tur === "final" || (o.tur === "genel" && o.alt !== "Tüm ekip") ? `<small>${esc(o.alt)}</small>` : ""}</div>`).join("")}
       </div>`;
     }
     document.getElementById("takvim").innerHTML = html;
